@@ -9,4 +9,12 @@ class Room:
         self.view = view
         self.decor_theme = decor_theme
 
-    
+    def __str__(self):
+        return f"Bed Type: {self.bed_type}, View: {self.view}, Decor Theme: {self.decor_theme}"
+
+#route for the homepage
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
