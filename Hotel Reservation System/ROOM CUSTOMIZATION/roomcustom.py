@@ -17,4 +17,18 @@ class Room:
 def index():
     return render_template('index.html')
 
+#route for submission and customization
+@app.route('/customize', methods=['POST'])
+def customize():
+    #retrieve form data from request
+    bed_type = request.form['bed_type']
+    view = request.form['view']
+    decor_theme = request.form['decor_theme']
 
+    # Create room with the customization options
+    room = Room(bed_type, view, decor_theme)
+    return render_template('customize.html', room=room)
+
+# Run the Flask application
+if __name__ == '__main__':
+    app.run(debug=True)   
