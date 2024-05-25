@@ -10,24 +10,27 @@ class CheckOut:
         self.root.title("CHECK OUT")
         self.root.geometry(
             "{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
+        
+        # change background color for check out page
+        self.root.config(bg="#c9c1a7")
 
         # create mainframe to add message
-        top = Frame(self.root)
+        top = Frame(self.root, bg="#c9c1a7")
         top.pack(side="top")
 
-        bottom = Frame(self.root)
+        bottom = Frame(self.root, bg="#c9c1a7")
         bottom.pack(side="top")
 
-        info_frame = Frame(self.root)
+        info_frame = Frame(self.root, bg="#c9c1a7")
         info_frame.pack(side="top")
 
-        # display message
-        self.label = Label(top, font=('arial', 50, 'bold'), text="CHECK OUT", fg="#15d3ba", anchor="center")
+        # changed font styles
+        self.label = Label(top, font=('Times', 50, 'bold'), text="CHECK OUT", fg="#ffe9a1", anchor="center", bg="#725700", borderwidth=3, relief="solid")
         self.label.grid(row=0, column=3, padx=10, pady=10)
 
         # room no label
-        self.room_no_label = Label(bottom, font=('arial', 20, 'bold'), text="ENTER THE ROOM NUMBER :", fg="#15d3ba",
-                                   anchor="center")
+        self.room_no_label = Label(bottom, font=('Times', 20, 'bold'), text="ENTER THE ROOM NUMBER :", fg="#ffe9a1",
+                                   anchor="center", bg="#948363")
         self.room_no_label.grid(row=2, column=2, padx=10, pady=10)
 
         # text enter field
@@ -69,14 +72,14 @@ class CheckOut:
                     self.get_info_entry.insert(INSERT, "PLEASE ENTER VALID ROOM NUMBER")
 
         # create submit button
-        self.check_out_button = Button(bottom, text="CHECK OUT", font=('', 15), bg="#15d3ba", relief=RIDGE, height=2,
+        self.check_out_button = Button(bottom, text="CHECK OUT", font=('', 15), bg="#948363", relief=RIDGE, height=2,
                                        width=15,
-                                       fg="black", anchor="center", command=check_out)
+                                       fg="#ffe9a1", anchor="center", command=check_out)
         self.check_out_button.grid(row=3, column=2, padx=10, pady=10)
 
         # create submit button
-        self.home_button = Button(bottom, text="HOME", font=('', 15), bg="#15d3ba", relief=RIDGE, height=2, width=15,
-                                  fg="black", anchor="center", command=main.home_ui)
+        self.home_button = Button(bottom, text="HOME", font=('', 15), bg="#948363", relief=RIDGE, height=2, width=15,
+                                  fg="#ffe9a1", anchor="center", command=main.home_ui)
         self.home_button.grid(row=3, column=3, padx=10, pady=10)
 
 
@@ -84,3 +87,4 @@ def check_out_ui():
     root = Tk()
     application = CheckOut(root)
     root.mainloop()
+

@@ -44,14 +44,14 @@ class Hotel:
         self.check_out_button.grid(row=1, column=2, padx=10, pady=10)
 
         # create show list button
-        self.room_info_button = Button(bottom, text="ROOMS INFORMATION", font=('Times', 20), bg="#948363", relief=RIDGE,
+        self.room_info_button = Button(bottom, text="AMOUNT OF PEOPLE", font=('Times', 20), bg="#948363", relief=RIDGE,
                                        height=2,
                                        width=50, fg="#ffe9a1", anchor="center",
                                        command=get_info.get_info_ui)  # call get_info_ui function from get_info.py file
         self.room_info_button.grid(row=2, column=2, padx=10, pady=10)
 
         # create get information of all the guest
-        self.get_info_button = Button(bottom, text="GUEST INFORMATION", font=('Times', 20), bg="#948363",
+        self.get_info_button = Button(bottom, text="ROOM TYPE", font=('Times', 20), bg="#948363",
                                       relief=RIDGE,
                                       height=2, width=50, fg="#ffe9a1", anchor="center",
                                       command=customer_info.customer_info_ui)
