@@ -7,37 +7,44 @@ class GetInfo:
     def __init__(self, root):
         self.root = root
         pad = 3
-        self.root.title("GET INFO")
+        self.root.title("AMOUNT OF PEOPLE")
         self.root.geometry(
             "{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
 
+        self.root.configure(bg="#c9c1a7")
+
         # create mainframe to add message
-        top = Frame(self.root)
+        top = Frame(self.root, bg="#c9c1a7")
         top.pack(side="top")
 
-        bottom = Frame(self.root)
+        bottom = Frame(self.root, bg="#c9c1a7")
         bottom.pack(side="top")
 
-        info_frame = Frame(self.root, width=454, height=20)
+        info_frame = Frame(self.root)
         info_frame.pack(side="top")
 
-        button_frame = Frame(self.root)
+        button_frame = Frame(self.root, bg="#c9c1a7")
         button_frame.pack(side="top")
 
         # display message
-        self.label = Label(top, font=('arial', 50, 'bold'), text="INFORMATION OF CUSTOMER", fg="#15d3ba",
-                           anchor="center")
+        self.label = Label(top, font=('Times', 50, 'bold'), text="K I N G S T O N  H O T E L", fg="#725700",
+                           anchor="center", bg="#c9c1a7")
         self.label.grid(row=0, column=3, padx=10, pady=10)
 
         # room no label
-        self.room_no_label = Label(bottom, font=('arial', 20, 'bold'), text="ENTER THE ROOM NUMBER :", fg="#15d3ba",
-                                   anchor="center")
+        self.room_no_label = Label(bottom, font=('Times', 20, 'bold'), text="ENTER THE AMOUNT OF PEOPLE :", fg="#ffe9a1",
+                                   anchor="center", bg="#948363")
         self.room_no_label.grid(row=2, column=2, padx=10, pady=10)
 
         # text enter field
         self.room_number = IntVar()
         self.room_no_entry = Entry(bottom, width=5, text=self.room_number)
         self.room_no_entry.grid(row=2, column=3, padx=10, pady=10)
+
+        # new label
+        self.info_label = Label(bottom, font=('Times', 20, 'bold'), text="PROVIDE YOUR INFORMATION HERE :", fg="#ffe9a1",
+                                anchor="center", bg="#948363")
+        self.info_label.grid(row=3, column=2, columnspan=2, padx=10, pady=10)
 
         # text enter field
         self.get_info_entry = Text(info_frame, height=15, width=90)
@@ -70,13 +77,13 @@ class GetInfo:
                     self.get_info_entry.insert(INSERT, "\nPLEASE ENTER VALID ROOM NUMBER")
 
         # create submit button
-        self.submit_button = Button(button_frame, text="SUBMIT", font=('', 15), bg="#15d3ba", relief=RIDGE, height=2,
-                                    width=15, fg="black", anchor="center", command=get_info)
+        self.submit_button = Button(button_frame, text="SUBMIT", font=('Times', 15), bg="#948363", relief=RIDGE, height=2,
+                                    width=15, fg="#ffe9a1", anchor="center", command=get_info)
         self.submit_button.grid(row=8, column=2, padx=10, pady=10)
 
         # create home button
-        self.home_button = Button(button_frame, text="HOME", font=('', 15), bg="#15d3ba", relief=RIDGE, height=2,
-                                  width=15, fg="black", anchor="center", command=main.home_ui)
+        self.home_button = Button(button_frame, text="HOME", font=('Times', 15), bg="#948363", relief=RIDGE, height=2,
+                                  width=15, fg="#ffe9a1", anchor="center", command=main.home_ui)
         self.home_button.grid(row=8, column=3, padx=10, pady=10)
 
 
@@ -84,3 +91,8 @@ def get_info_ui():
     root = Tk()
     application = GetInfo(root)
     root.mainloop()
+
+
+
+
+

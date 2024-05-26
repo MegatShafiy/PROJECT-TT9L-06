@@ -21,7 +21,7 @@ class CheckOut:
         bottom = Frame(self.root, bg="#c9c1a7")
         bottom.pack(side="top")
 
-        info_frame = Frame(self.root, bg="#c9c1a7")
+        info_frame = Frame(self.root)
         info_frame.pack(side="top")
 
         # changed font styles

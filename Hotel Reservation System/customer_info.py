@@ -11,25 +11,27 @@ class CustomerInfo:
         self.root.geometry(
             "{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
 
+        self.root.configure(bg="#c9c1a7")
+
         # create mainframe to add message
-        top = Frame(self.root)
+        top = Frame(self.root,bg="#c9c1a7" )
         top.pack(side="top")
 
-        bottom = Frame(self.root)
+        bottom = Frame(self.root, bg="#c9c1a7")
         bottom.pack(side="top")
 
-        left = Frame(self.root, relief="solid")
+        left = Frame(self.root, relief="solid", bg="#c9c1a7")
         left.pack(side="left")
 
-        right = Frame(self.root, relief="solid")
+        right = Frame(self.root, relief="solid", bg="#c9c1a7")
         right.pack(side="left")
 
         # display message
-        self.label = Label(top, font=('arial', 50, 'bold'), text="LIST OF CUSTOMER", fg="#15d3ba", anchor="center")
+        self.label = Label(top, font=('Times', 50, 'bold'), text="LIST OF CUSTOMER", fg="#725700", anchor="center", bg="#c9c1a7")
         self.label.grid(row=0, column=3, padx=10, pady=10)
 
         # display message
-        self.name_label = Label(left, font=('arial', 20, 'bold'), text="NAME", fg="#15d3ba", anchor="center")
+        self.name_label = Label(left, font=('Times', 20, 'bold'), text="NAME", fg="#ffe9a1", anchor="center", bg="#948363")
         self.name_label.grid(row=0, column=1, padx=10, pady=10)
 
         # text enter field
@@ -37,7 +39,7 @@ class CustomerInfo:
         self.name_customer_entry.grid(row=1, column=1, padx=10, pady=10)
 
         # display message
-        self.room_no_label = Label(right, font=('arial', 20, 'bold'), text="ROOM NO", fg="#15d3ba", anchor="center")
+        self.room_no_label = Label(right, font=('Times', 20, 'bold'), text="ROOM NO", fg="#ffe9a1", anchor="center", bg="#948363")
         self.room_no_label.grid(row=0, column=1, padx=10, pady=10)
 
         # text enter field
@@ -45,8 +47,8 @@ class CustomerInfo:
         self.room_no_customer_entry.grid(row=1, column=1, padx=10, pady=10)
 
         # create home button
-        self.home_button = Button(top, text="HOME", font=('', 15), bg="#15d3ba", relief=RIDGE, height=2, width=15,
-                                  fg="black", anchor="center", command=main.home_ui)
+        self.home_button = Button(top, text="HOME", font=('Times', 15), bg="#948363", relief=RIDGE, height=2, width=15,
+                                  fg="#ffe9a1", anchor="center", command=main.home_ui)
         self.home_button.grid(row=8, column=3, padx=10, pady=10)
 
         def display_info():

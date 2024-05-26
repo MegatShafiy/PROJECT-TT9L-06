@@ -51,7 +51,7 @@ class Hotel:
         self.room_info_button.grid(row=2, column=2, padx=10, pady=10)
 
         # create get information of all the guest
-        self.get_info_button = Button(bottom, text="ROOM TYPE", font=('Times', 20), bg="#948363",
+        self.get_info_button = Button(bottom, text="LIST OF CUSTOMER", font=('Times', 20), bg="#948363",
                                       relief=RIDGE,
                                       height=2, width=50, fg="#ffe9a1", anchor="center",
                                       command=customer_info.customer_info_ui)
