@@ -4,6 +4,7 @@ import check_in_ui
 import check_out
 import get_info
 import customer_info
+import room_customization
 import os
 
 class Hotel:
