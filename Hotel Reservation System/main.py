@@ -4,6 +4,7 @@ import check_in_ui
 import check_out
 import get_info
 import customer_info
+import roomcustom
 import os
 
 
@@ -55,6 +56,12 @@ class Hotel:
                                       relief=RIDGE,
                                       height=2, width=50, fg="#ffe9a1", anchor="center",
                                       command=customer_info.customer_info_ui)
+        
+         # create room customization button
+        self.room_customization_button = Button(bottom, text="ROOM CUSTOMIZATION", font=('Times', 20), bg="#948363", relief=RIDGE, height=2, width=50,
+                                                fg="#ffe9a1", anchor="center", command=roomcustom.room_customization_ui)
+        self.room_customization_button.grid(row=4, column=2, padx=10, pady=10)
+
         # call customer_info_ui function from customer_info.py file
         self.get_info_button.grid(row=3, column=2, padx=10, pady=10)
 
