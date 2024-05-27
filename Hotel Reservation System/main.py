@@ -12,8 +12,7 @@ class Hotel:
         self.root = root
         pad = 3
         self.root.title("HOTEL MANAGEMENT SYSTEM")
-        self.root.geometry(
-            "{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
+        self.root.geometry("{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
 
         # set background color
         self.root.configure(bg="#c9c1a7")
@@ -30,45 +29,35 @@ class Hotel:
         self.label = Label(top, font=('Times', 50, 'bold'), text="K I N G S T O N  HOTEL", fg="#725700", anchor="center", bg="#c9c1a7")
         self.label.grid(row=0, column=3)
 
-        # create check in button
+        # create check-in button
         self.check_in_button = Button(bottom, text="CHECK IN", font=('Times', 20), bg="#948363", relief=RIDGE, height=2,
-                                      width=50,
-                                      fg="#ffe9a1", anchor="center",
-                                      command=check_in_ui.check_in_ui_fun)  # call check_in_ui_fun from check_in_ui.py file
+                                      width=50, fg="#ffe9a1", anchor="center", command=check_in_ui.check_in_ui_fun)
         self.check_in_button.grid(row=0, column=2, padx=10, pady=10)
 
-        # create check out button
+        # create check-out button
         self.check_out_button = Button(bottom, text="CHECK OUT", font=('Times', 20), bg="#948363", relief=RIDGE, height=2,
-                                       width=50, fg="#ffe9a1", anchor="center",
-                                       command=check_out.check_out_ui)  # call check_out_ui function from check_out.py file
+                                       width=50, fg="#ffe9a1", anchor="center", command=check_out.check_out_ui)
         self.check_out_button.grid(row=1, column=2, padx=10, pady=10)
 
-        # create show list button
+        # create rooms information button
         self.room_info_button = Button(bottom, text="ROOMS INFORMATION", font=('Times', 20), bg="#948363", relief=RIDGE,
-                                       height=2,
-                                       width=50, fg="#ffe9a1", anchor="center",
-                                       command=get_info.get_info_ui)  # call get_info_ui function from get_info.py file
+                                       height=2, width=50, fg="#ffe9a1", anchor="center", command=get_info.get_info_ui)
         self.room_info_button.grid(row=2, column=2, padx=10, pady=10)
 
-        # create get information of all the guest
-        self.get_info_button = Button(bottom, text="GUEST INFORMATION", font=('Times', 20), bg="#948363",
-                                      relief=RIDGE,
-                                      height=2, width=50, fg="#ffe9a1", anchor="center",
-                                      command=customer_info.customer_info_ui)
-        
-         # create room customization button
-        self.room_customization_button = Button(bottom, text="ROOM CUSTOMIZATION", font=('Times', 20), bg="#948363", relief=RIDGE, height=2, width=50,
-                                                fg="#ffe9a1", anchor="center", command=room_customization.roomcustom_ui)
-        self.room_customization_button.grid(row=4, column=2, padx=10, pady=10)
-
-        # call customer_info_ui function from customer_info.py file
+        # create guest information button
+        self.get_info_button = Button(bottom, text="GUEST INFORMATION", font=('Times', 20), bg="#948363", relief=RIDGE,
+                                      height=2, width=50, fg="#ffe9a1", anchor="center", command=customer_info.customer_info_ui)
         self.get_info_button.grid(row=3, column=2, padx=10, pady=10)
+
+        # create room customization button
+        self.room_customization_button = Button(bottom, text="ROOM CUSTOMIZATION", font=('Times', 20), bg="#948363", relief=RIDGE, height=2,
+                                                width=50, fg="#ffe9a1", anchor="center", command=room_customization.roomcustom_ui)
+        self.room_customization_button.grid(row=4, column=2, padx=10, pady=10)
 
         # button to exit the program
         self.exit_button = Button(bottom, text="EXIT", font=('Times', 20), bg="#948363", relief=RIDGE, height=2, width=50,
-                                  fg="#ffe9a1",
-                                  anchor="center", command=quit)
-        self.exit_button.grid(row=4, column=2, padx=10, pady=10)
+                                  fg="#ffe9a1", anchor="center", command=self.root.quit)
+        self.exit_button.grid(row=5, column=2, padx=10, pady=10)
 
 
 def home_ui():
@@ -79,4 +68,3 @@ def home_ui():
 
 if __name__ == '__main__':
     home_ui()
-
