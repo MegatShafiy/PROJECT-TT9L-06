@@ -5,12 +5,10 @@ import check_out
 import get_info
 import customer_info
 import room_customization
-import os
-
-# New modules for additional functionalities
 import room_availability
 import booking_history
 import feedback
+import os
 
 class Hotel:
     def __init__(self, root):
@@ -57,7 +55,7 @@ class Hotel:
 
         # create room customization button
         self.room_customization_button = Button(bottom, text="ROOM CUSTOMIZATION", font=('Times', 20), bg="#948363", relief=RIDGE, height=2,
-                                                width=50, fg="#ffe9a1", anchor="center", command=room_customization.roomcustom_ui)
+                                                width=50, fg="#ffe9a1", anchor="center", command=room_customization.room_customization_ui)
         self.room_customization_button.grid(row=4, column=2, padx=10, pady=10)
 
         # create room availability button
