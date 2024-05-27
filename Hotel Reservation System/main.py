@@ -51,7 +51,7 @@ class Hotel:
 
         # create room customization button
         self.room_customization_button = Button(bottom, text="ROOM CUSTOMIZATION", font=('Times', 20), bg="#948363", relief=RIDGE, height=2,
-                                                width=50, fg="#ffe9a1", anchor="center", command=room_customization.roomcustom_ui)
+                                                width=50, fg="#ffe9a1", anchor="center", command= room_customization.room_customization_ui)
         self.room_customization_button.grid(row=4, column=2, padx=10, pady=10)
 
         # button to exit the program
