@@ -24,7 +24,7 @@ class CheckIN:
 
         self.root.configure(bg="#c9c1a7")
 
-        self.top = LabelFrame(self.root,bg="#725700")
+        self.top = LabelFrame(self.root)
         self.top.pack(side="top")
 
         self.bottom = Frame(self.root, bg="#c9c1a7")

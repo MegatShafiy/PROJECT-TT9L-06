@@ -4,6 +4,7 @@ import check_in_ui
 import check_out
 import get_info
 import customer_info
+import room_type
 import os
 
 
@@ -50,19 +51,23 @@ class Hotel:
                                        command=get_info.get_info_ui)  # call get_info_ui function from get_info.py file
         self.room_info_button.grid(row=2, column=2, padx=10, pady=10)
 
+        self.room_type_button = Button(bottom, text="ROOM TYPE", font=('Times', 20), bg="#948363", relief=RIDGE,
+                                        height=2, width=50, fg="#ffe9a1", anchor="center", command=room_type.room_type_ui)
+        self.room_type_button.grid(row=3, column=2, padx=10, pady=10)
+
         # create get information of all the guest
         self.get_info_button = Button(bottom, text="LIST OF CUSTOMER", font=('Times', 20), bg="#948363",
                                       relief=RIDGE,
                                       height=2, width=50, fg="#ffe9a1", anchor="center",
                                       command=customer_info.customer_info_ui)
         # call customer_info_ui function from customer_info.py file
-        self.get_info_button.grid(row=3, column=2, padx=10, pady=10)
+        self.get_info_button.grid(row=4, column=2, padx=10, pady=10)
 
         # button to exit the program
         self.exit_button = Button(bottom, text="EXIT", font=('Times', 20), bg="#948363", relief=RIDGE, height=2, width=50,
                                   fg="#ffe9a1",
                                   anchor="center", command=quit)
-        self.exit_button.grid(row=4, column=2, padx=10, pady=10)
+        self.exit_button.grid(row=5, column=2, padx=10, pady=10)
 
 
 def home_ui():

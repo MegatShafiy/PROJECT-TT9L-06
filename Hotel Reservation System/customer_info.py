@@ -72,8 +72,8 @@ class CustomerInfo:
                 for i in ans:
                     self.room_no_customer_entry.insert(INSERT, str(i[0]) + '\n')
         # create display button
-        self.display_button = Button(top, text="DISPLAY", font=('', 15), bg="#15d3ba", relief=RIDGE, height=2, width=15,
-                                     fg="black", anchor="center", command=display_info)
+        self.display_button = Button(top, text="DISPLAY", font=('Times', 15), bg="#948363", relief=RIDGE, height=2, width=15,
+                                     fg="#ffe9a1", anchor="center", command=display_info)
         self.display_button.grid(row=8, column=4, padx=10, pady=10)
 
 
