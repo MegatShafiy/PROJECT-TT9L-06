@@ -41,7 +41,7 @@ class CheckIN:
 
 
         self.name_var = StringVar()
-        # text enter field
+
         self.name_entry = Entry(self.bottom, width=50, textvar=self.name_var)
         
 
@@ -50,7 +50,6 @@ class CheckIN:
                                    anchor="w")
         self.address_label.grid(row=3, column=2, padx=10, pady=10)
 
-        # text enter field
         self.address_var = StringVar()
         self.address_entry = Entry(self.bottom, width=50, textvar=self.address_var)
         self.address_entry.grid(row=3, column=3, padx=10, pady=10)
@@ -62,7 +61,7 @@ class CheckIN:
                                   anchor="w")
         self.mobile_label.grid(row=4, column=2, padx=10, pady=10)
 
-        # text enter field
+
         self.mobile_var = IntVar()
         self.mobile_entry = Entry(self.bottom, width=50, text=self.mobile_var)
         self.mobile_entry.grid(row=4, column=3, padx=10, pady=10)
@@ -73,7 +72,6 @@ class CheckIN:
                                 anchor="w")
         self.days_label.grid(row=5, column=2, padx=10, pady=10)
 
-        # text enter field
         self.days_var = IntVar()
         self.days_entry = Entry(self.bottom, width=50, text=self.days_var)
         self.days_entry.grid(row=5, column=3, padx=10, pady=10)

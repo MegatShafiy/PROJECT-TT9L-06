@@ -11,8 +11,6 @@ class RoomType:
         self.root.geometry(
             "{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
         self.root.configure(bg="#c9c1a7")
-
-        # Create mainframe to add message
         top = Frame(self.root, bg="#c9c1a7")
         top.pack(side="top", fill="x")
 

@@ -27,7 +27,6 @@ class Hotel:
         bottom = Frame(self.root)
         bottom.pack(side="top")
 
-        # display message
         self.label = Label(top, font=('Times', 50, 'bold'), text="K I N G S T O N  HOTEL", fg="#725700", anchor="center", bg="#c9c1a7")
         self.label.grid(row=0, column=3)
 
@@ -55,12 +54,12 @@ class Hotel:
                                         height=2, width=50, fg="#ffe9a1", anchor="center", command=room_type.room_type_ui)
         self.room_type_button.grid(row=3, column=2, padx=10, pady=10)
 
-        # create get information of all the guest
+        # create information of all the guest
         self.get_info_button = Button(bottom, text="LIST OF CUSTOMER", font=('Times', 20), bg="#948363",
                                       relief=RIDGE,
                                       height=2, width=50, fg="#ffe9a1", anchor="center",
                                       command=customer_info.customer_info_ui)
-        # call customer_info_ui function from customer_info.py file
+
         self.get_info_button.grid(row=4, column=2, padx=10, pady=10)
 
         # button to exit the program
