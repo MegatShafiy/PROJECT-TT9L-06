@@ -27,7 +27,7 @@ class RoomType:
         self.label = Label(top, font=('Times New Roman', 50, 'bold'), text="ROOM TYPE", fg="#725700", anchor="center", bg="#c9c1a7")
         self.label.pack(pady=10)
 
-        # Room type information 
+        # room type information 
         self.room_types = [
             ("Single Room", "Room assigned to one person. May have one or two beds."),
             ("Double Room", "Room assigned to two people. May have one or more beds."),
@@ -49,6 +49,8 @@ class RoomType:
         for idx, (room_type, description) in enumerate(self.room_types):
             frame = Frame(parent, bg="#c9c1a7", relief="solid", bd=2)
             frame.pack(fill="x", padx=10, pady=5)
+
+            # using radio_button to make options that can be selected
 
             radio_button = Radiobutton(frame, text=room_type, variable=self.selected_room_type, value=room_type, font=('Times New Roman', 20, 'bold'), bg="#c9c1a7", fg="#725700", anchor="w", padx=10, pady=5, selectcolor="white")
             radio_button.pack(side="left")
