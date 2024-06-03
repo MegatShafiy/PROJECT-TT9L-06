@@ -4,23 +4,19 @@ import bcrypt
 from tkinter import *
 from tkinter import messagebox
 
-# Initialize the app
 app = customtkinter.CTk()
 app.title('Login')
 app.geometry('450x360')
 app.config(bg='#001220')
 
-# Define fonts
 font1 = ('Helvetica', 25, 'bold')
 font2 = ('Arial', 17, 'bold')
 font3 = ('Arial', 13, 'bold')
 font4 = ('Arial', 13, 'bold', 'underline')
 
-# Connect to SQLite database
 conn = sqlite3.connect('data.db')
 cursor = conn.cursor()
 
-# Create users table if not exists
 cursor.execute(
     '''CREATE TABLE IF NOT EXISTS users(
         username TEXT NOT NULL,
@@ -31,7 +27,7 @@ def signup():
     username = username_entry.get()
     password = password_entry.get()
     if username != '' and password != '':
-        cursor.execute('SELECT username FROM users WHERE username=?', [username])  # Corrected table name
+        cursor.execute('SELECT username FROM users WHERE username=?', [username])  
         if cursor.fetchone() is not None:
             messagebox.showerror('Error', 'Username already exists')
         else:
@@ -48,7 +44,7 @@ def login_account():
     username = username_entry2.get()
     password = password_entry2.get()
     if username != '' and password != '':
-        cursor.execute('SELECT password FROM users WHERE username=?', [username])  # Corrected table name
+        cursor.execute('SELECT password FROM users WHERE username=?', [username])  
         result = cursor.fetchone()
         if result:
             if bcrypt.checkpw(password.encode('utf-8'), result[0]):
@@ -65,7 +61,7 @@ def login():
     frame2 = customtkinter.CTkFrame(app, bg_color='#001220', fg_color='#001220', width=470, height=360)
     frame2.place(x=0, y=0)
 
-    image1 = PhotoImage(file="download.png")
+    image1 = PhotoImage(file="PROJECT-TT9L-06/Images/download.png")
     image1_label = Label(frame2, image=image1, bg='#001220', width=250, height=500)
     image1_label.place(x=0, y=0)
     frame2.image1 = image1
@@ -94,7 +90,7 @@ def login():
 frame1 = customtkinter.CTkFrame(app, bg_color='#001220', fg_color='#001220', width=500, height=500)
 frame1.place(x=0, y=0)
 
-image1 = PhotoImage(file="download.png")
+image1 = PhotoImage(file="PROJECT-TT9L-06/Images/download.png")
 image1_label = Label(frame1, image=image1, bg='#001220', width=250, height=500)
 image1_label.place(x=0, y=0)
 
