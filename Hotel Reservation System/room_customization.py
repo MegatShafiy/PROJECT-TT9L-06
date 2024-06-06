@@ -14,16 +14,15 @@ def save_customization(selected_bed, selected_view, selected_extras):
     except sqlite3.Error as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
     finally:
-        conn.close()  # Ensure the connection is closedtio
+        conn.close()  # Ensure the connection is closed
 
 # Function to apply room customization
-def apply_customization():
+def apply_customization(bed_var, view_var, extras_var):
     selected_bed = bed_var.get()
     selected_view = view_var.get()
     selected_extras = extras_var.get()
     save_customization(selected_bed, selected_view, selected_extras)
     messagebox.showinfo("Customization Applied", f"Bed Type: {selected_bed}\nView: {selected_view}\nExtras: {selected_extras}")
-
 
 # Function to create the room customization UI
 def room_customization_ui():
@@ -64,7 +63,7 @@ def room_customization_ui():
         Radiobutton(customization_window, text=option, variable=extras_var, value=option, font=('Times', 15), bg="#c9c1a7", fg="#725700").pack(anchor=W, padx=40)
 
     # Apply button
-    apply_button = Button(customization_window, text="Apply Customization", font=('Times', 20), bg="#948363", fg="#ffe9a1", command=apply_customization)
+    apply_button = Button(customization_window, text="Apply Customization", font=('Times', 20), bg="#948363", fg="#ffe9a1", command=lambda: apply_customization(bed_var, view_var, extras_var))
     apply_button.pack(pady=20)
 
 # Example call to room_customization_ui to test it independently
