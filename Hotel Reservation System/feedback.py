@@ -15,10 +15,16 @@ def feedback_ui():
     def submit_feedback():
         feedback_content = feedback_text.get("1.0", END).strip()
         if feedback_content:
-            with open("feedback.txt", "a") as f:
-                f.write(feedback_content + "\n\n")
-            messagebox.showinfo("Feedback Submitted", "Thank you for your feedback!")
-            feedback_window.destroy()
+           conn = sqlite3.connect('Hotel.db')  # Connect to the database
+           try:
+                cursor = conn.cursor()
+                cursor.execute('CREATE TABLE IF NOT EXISTS Feedback (id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT)')  # Create table if it doesn't exist
+                cursor.execute('INSERT INTO Feedback (content) VALUES (?)', (feedback_content,))  # Insert feedback into the table
+                conn.commit()
+                messagebox.showinfo("Feedback Submitted", "Thank you for your feedback!")
+                feedback_window.destroy()
+           finally:
+                conn.close()  # Ensure the connection is closed
         else:
             messagebox.showwarning("Empty Feedback", "Please enter some feedback before submitting.")
 
