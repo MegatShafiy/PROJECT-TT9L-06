@@ -84,6 +84,9 @@ class Hotel:
                                   fg="#ffe9a1", anchor="center", command=self.root.quit)
         self.exit_button.grid(row=8, column=2, padx=10, pady=10)
 
+def initialize_database(self):
+        conn = sqlite3.connect('Hotel.db')  #Connect to the SQLite database
+
 def home_ui():
     root = Tk()
     application = Hotel(root)
