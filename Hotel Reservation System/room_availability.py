@@ -2,34 +2,39 @@ import sqlite3
 from tkinter import *
 from tkinter import messagebox
 
+# Function to check room availability
 def check_availability(checkin_date, checkout_date):
     conn = sqlite3.connect('Hotel.db')  # Connect to the database
     try:
         cursor = conn.cursor()
-        # Replace this query with actual logic to check room availability based on dates
         cursor.execute('SELECT room_number FROM Bookings WHERE checkin_date <= ? AND checkout_date >= ?', (checkout_date, checkin_date))
         available_rooms = cursor.fetchall()
-        return [str(room[0]) for room in available_rooms]
+        
+        # Fetch availability dates for the selected period
+        cursor.execute('SELECT DISTINCT checkin_date, checkout_date FROM Bookings WHERE checkin_date >= ? AND checkout_date <= ?', (checkin_date, checkout_date))
+        availability_dates = cursor.fetchall()
+        
+        return available_rooms, availability_dates
     except sqlite3.Error as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
-        return []
+        return [], []
     finally:
-        conn.close()  # Ensure the connection is closed
-
+        conn.close()
 
 # Function to handle button click
 def on_check_availability_click():
     checkin_date = checkin_entry.get()
     checkout_date = checkout_entry.get()
     if checkin_date and checkout_date:
-        available_rooms = check_availability(checkin_date, checkout_date)
+        available_rooms, availability_dates = check_availability(checkin_date, checkout_date)
         if available_rooms:
-            messagebox.showinfo("Available Rooms", f"Available rooms from {checkin_date} to {checkout_date}: {', '.join(available_rooms)}")
+            rooms_str = ", ".join([str(room[0]) for room in available_rooms])
+            dates_str = "\n".join([f"Available from {date[0]} to {date[1]}" for date in availability_dates])
+            messagebox.showinfo("Available Rooms", f"Available rooms: {rooms_str}\n\n{dates_str}")
         else:
-            messagebox.showinfo("No Rooms Available", f"No rooms available from {checkin_date} to {checkout_date}.")
+            messagebox.showinfo("No Rooms Available", "No rooms available for the selected dates.")
     else:
         messagebox.showwarning("Empty Fields", "Please enter both check-in and check-out dates.")
-    
 
 # Create availability UI
 availability_window = Tk()

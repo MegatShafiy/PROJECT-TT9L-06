@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter.font import Font
-import _sqlite3
+import sqlite3
 import check_in_ui
 import check_out
 import get_info
