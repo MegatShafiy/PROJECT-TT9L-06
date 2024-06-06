@@ -46,28 +46,28 @@ class GetInfo:
         def get_info():
             room_number1 = int(self.room_no_entry.get())
             conn = sqlite3.connect('Hotel.db')
-            with conn:
+            try:
                 cursor = conn.cursor()
-            cursor.execute(
-                'CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT,Address TEXT,mobile_number TEXT,number_days TEXT,'
-                'room_number NUMBER)')
-            conn.commit()
-            with conn:
+                cursor.execute(
+                    'CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT, Address TEXT, mobile_number TEXT, number_days TEXT, room_number NUMBER)'
+                )  # Create table if it doesn't exist
+                conn.commit()
+
                 cursor.execute("SELECT room_number FROM Hotel")
                 ans = cursor.fetchall()
-                room = []
-                for i in ans:
-                    room.append(i[0])
+                room = [i[0] for i in ans]
+
                 if room_number1 in room:
-                    with conn:
-                        cursor.execute("SELECT * FROM Hotel")
-                        ans = cursor.fetchall()
-                        for i in ans:
-                            if room_number1 == int(i[4]):
-                                self.get_info_entry.insert(INSERT,
-                                                           'NAME: ' + str(i[0]) + '\nADDRESS: ' + str(i[1]) + '\nMOBILE NUMBER:  ' + str(i[2]) + '\nNUMBER OF DAYS: ' + str(i[3]) + '\nROOM NUMBER: ' + str(i[4]) + '\n')
+                    cursor.execute("SELECT * FROM Hotel WHERE room_number=?", (room_number1,))
+                    ans = cursor.fetchall()
+                    for i in ans:
+                        self.get_info_entry.insert(INSERT,
+                                                   'NAME: ' + str(i[0]) + '\nADDRESS: ' + str(i[1]) + '\nMOBILE NUMBER:  ' + str(i[2]) + '\nNUMBER OF DAYS: ' + str(i[3]) + '\nROOM NUMBER: ' + str(i[4]) + '\n')
                 else:
                     self.get_info_entry.insert(INSERT, "\nPLEASE ENTER VALID ROOM NUMBER")
+            finally:
+                conn.close()  #Ensure the connection is closed
+
 
         # create submit button
         self.submit_button = Button(button_frame, text="SUBMIT", font=('', 15), bg="#15d3ba", relief=RIDGE, height=2,
