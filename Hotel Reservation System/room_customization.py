@@ -14,8 +14,18 @@ def save_customization(selected_bed, selected_view, selected_extras):
     except sqlite3.Error as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
     finally:
-        conn.close()  # Ensure the connection is closed
+        conn.close()  # Ensure the connection is closedtio
 
+# Function to apply room customization
+def apply_customization():
+    selected_bed = bed_var.get()
+    selected_view = view_var.get()
+    selected_extras = extras_var.get()
+    save_customization(selected_bed, selected_view, selected_extras)
+    messagebox.showinfo("Customization Applied", f"Bed Type: {selected_bed}\nView: {selected_view}\nExtras: {selected_extras}")
+
+
+# Function to create the room customization UI
 def room_customization_ui():
     # Create a new window for room customization
     customization_window = Toplevel()
@@ -28,13 +38,6 @@ def room_customization_ui():
     title_label.pack(pady=20)
 
     # Options for room customization
-    def apply_customization():
-        # Function to apply customization
-        selected_bed = bed_var.get()
-        selected_view = view_var.get()
-        selected_extras = extras_var.get()
-        messagebox.showinfo("Customization Applied", f"Bed Type: {selected_bed}\nView: {selected_view}\nExtras: {selected_extras}")
-
     bed_var = StringVar(value="King Size")
     view_var = StringVar(value="Sea View")
     extras_var = StringVar(value="None")
