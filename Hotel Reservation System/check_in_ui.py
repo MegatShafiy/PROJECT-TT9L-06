@@ -45,6 +45,15 @@ class CheckIN:
         self.name_entry = Entry(self.bottom, width=50, textvar=self.name_var)
         
 
+
+        self.name_label = Label(self.bottom, font=('Times', 20, 'bold'), bg="#948363", text="ENTER YOUR NAME :", fg="#ffe9a1",
+                                   anchor="w")
+        self.name_label.grid(row=2, column=2, padx=10, pady=10)
+
+        self.name_var = StringVar()
+        self.name_entry = Entry(self.bottom, width=50, textvar=self.name_var)
+        self.name_entry.grid(row=2, column=3, padx=10, pady=10)
+
         # address label
         self.address_label = Label(self.bottom, font=('Times', 20, 'bold'), bg="#948363", text="ENTER YOUR ADDRESS :", fg="#ffe9a1",
                                    anchor="w")
