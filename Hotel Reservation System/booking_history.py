@@ -16,7 +16,7 @@ def fetch_booking_history():
         conn.close()  # Ensure the connection is closed
 
 # Function to display booking history in the UI
-def display_booking_history():
+def display_booking_history(history_list):
     bookings = fetch_booking_history()
     if bookings:
         for booking in bookings:
@@ -37,7 +37,7 @@ def booking_history_ui():
     history_list = Listbox(history_window, font=('Times', 15))
     history_list.pack(fill=BOTH, expand=True, padx=20, pady=20)
 
-    display_booking_history()
+    display_booking_history(history_list)  # Pass history_list to display_booking_history function
 
 # Example call to booking_history_ui to test it independently
 if __name__ == "__main__":
