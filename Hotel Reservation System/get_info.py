@@ -7,13 +7,12 @@ class GetInfo:
     def __init__(self, root):
         self.root = root
         pad = 3
-        self.root.title("AMOUNT OF PEOPLE")
+        self.root.title("CUSTOMER INFORMATION")
         self.root.geometry(
             "{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
 
         self.root.configure(bg="#c9c1a7")
 
-        # create mainframe to add message
         top = Frame(self.root, bg="#c9c1a7")
         top.pack(side="top")
 
@@ -32,21 +31,21 @@ class GetInfo:
         self.label.grid(row=0, column=3, padx=10, pady=10)
 
         # room no label
-        self.room_no_label = Label(bottom, font=('Times', 20, 'bold'), text="ENTER THE AMOUNT OF PEOPLE :", fg="#ffe9a1",
+        self.room_no_label = Label(bottom, font=('Times', 20, 'bold'), text="ENTER ROOM NUMBER :", fg="#ffe9a1",
                                    anchor="center", bg="#948363")
         self.room_no_label.grid(row=2, column=2, padx=10, pady=10)
 
-        # text enter field
+
         self.room_number = IntVar()
         self.room_no_entry = Entry(bottom, width=5, text=self.room_number)
         self.room_no_entry.grid(row=2, column=3, padx=10, pady=10)
 
-        # new label
-        self.info_label = Label(bottom, font=('Times', 20, 'bold'), text="PROVIDE YOUR INFORMATION HERE :", fg="#ffe9a1",
+
+        self.info_label = Label(bottom, font=('Times', 20, 'bold'), text="CUSTOMER INFORMATION HERE :", fg="#ffe9a1",
                                 anchor="center", bg="#948363")
         self.info_label.grid(row=3, column=2, columnspan=2, padx=10, pady=10)
 
-        # text enter field
+
         self.get_info_entry = Text(info_frame, height=15, width=90)
         self.get_info_entry.grid(row=1, column=1, padx=10, pady=10)
 
@@ -56,8 +55,9 @@ class GetInfo:
             with conn:
                 cursor = conn.cursor()
             cursor.execute(
-                'CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT,Address TEXT,mobile_number TEXT,number_days TEXT,'
-                'room_number NUMBER)')
+                'CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT,room_number NUMBER)')
+            cursor.execute(
+                'CREATE TABLE IF NOT EXISTS Amount (ID INTEGER PRIMARY KEY AUTOINCREMENT, room_number NUMBER, amount_people NUMBER)')
             conn.commit()
             with conn:
                 cursor.execute("SELECT room_number FROM Hotel")
@@ -91,7 +91,6 @@ def get_info_ui():
     root = Tk()
     application = GetInfo(root)
     root.mainloop()
-
 
 
 
