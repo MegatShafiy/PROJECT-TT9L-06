@@ -86,6 +86,19 @@ class Hotel:
 
 def initialize_database(self):
         conn = sqlite3.connect('Hotel.db')  #Connect to the SQLite database
+        try:
+            cursor = conn.cursor()
+            #Create the Hotel table if it does not exist
+            cursor.execute(
+                'CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT, Address TEXT, MobileNumber TEXT, NumberOfDays INT, room_number NUMBER)'
+            )
+            #Create the Amount table if it does not exist
+            cursor.execute(
+                'CREATE TABLE IF NOT EXISTS Amount (ID INTEGER PRIMARY KEY AUTOINCREMENT, room_number NUMBER, amount_people NUMBER)'
+            )
+            conn.commit()  # Commit the changes
+        finally:
+            conn.close()  # Close the connection
 
 def home_ui():
     root = Tk()
