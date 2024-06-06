@@ -50,30 +50,30 @@ class CustomerInfo:
         self.home_button.grid(row=8, column=3, padx=10, pady=10)
 
         def display_info():
-
             conn = sqlite3.connect('Hotel.db')
-            with conn:
+            try:
                 cursor = conn.cursor()
-            cursor.execute(
-                'CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT,Address TEXT,mobile_number TEXT,number_days TEXT,'
-                'room_number NUMBER)')
-            conn.commit()
-            with conn:
+                cursor.execute(
+                    'CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT, Address TEXT, mobile_number TEXT, number_days TEXT, room_number NUMBER)')
+                conn.commit()
                 cursor.execute("SELECT Fullname FROM Hotel")
                 ans = cursor.fetchall()
+                self.name_customer_entry.delete(1.0, END)  # Clear existing text
                 for i in ans:
                     self.name_customer_entry.insert(INSERT, i[0] + '\n')
 
-            with conn:
                 cursor.execute("SELECT room_number FROM Hotel")
                 ans = cursor.fetchall()
+                self.room_no_customer_entry.delete(1.0, END)  # Clear existing text
                 for i in ans:
                     self.room_no_customer_entry.insert(INSERT, str(i[0]) + '\n')
+            finally:
+                conn.close()  # Ensure the connection is closed
+        
         # create display button
         self.display_button = Button(top, text="DISPLAY", font=('', 15), bg="#15d3ba", relief=RIDGE, height=2, width=15,
                                      fg="black", anchor="center", command=display_info)
         self.display_button.grid(row=8, column=4, padx=10, pady=10)
-
 
 def customer_info_ui():
     root = Tk()
