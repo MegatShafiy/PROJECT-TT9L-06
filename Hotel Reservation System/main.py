@@ -40,7 +40,6 @@ class Hotel:
         # create check-in button
         self.check_in_button = Button(bottom, text="CHECK IN", font=('Times', 20), bg="#948363", relief=RIDGE, height=2,
                                       width=50, fg="#ffe9a1", anchor="center", command=check_in_ui.check_in_ui_fun)
-                                      command=get_info.get_info_ui)  # call get_info_ui function from get_info.py file
         self.check_in_button.grid(row=0, column=2, padx=10, pady=10)
 
         # create check-out button
