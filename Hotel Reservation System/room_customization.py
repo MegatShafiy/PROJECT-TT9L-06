@@ -1,5 +1,20 @@
+import sqlite3
 from tkinter import *
 from tkinter import messagebox
+
+# Function to save room customization settings to the database
+def save_customization(selected_bed, selected_view, selected_extras):
+    conn = sqlite3.connect('Hotel.db')  # Connect to the database
+    try:
+        cursor = conn.cursor()
+        cursor.execute('CREATE TABLE IF NOT EXISTS RoomCustomization (id INTEGER PRIMARY KEY AUTOINCREMENT, bed TEXT, view TEXT, extras TEXT)')  # Create table if it doesn't exist
+        cursor.execute('INSERT INTO RoomCustomization (bed, view, extras) VALUES (?, ?, ?)', (selected_bed, selected_view, selected_extras))  # Insert customization into the table
+        conn.commit()
+        messagebox.showinfo("Customization Saved", "Room customization settings saved successfully!")
+    except sqlite3.Error as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
+    finally:
+        conn.close()  # Ensure the connection is closed
 
 def room_customization_ui():
     # Create a new window for room customization
