@@ -22,6 +22,9 @@ class Hotel:
         # set background color
         self.root.configure(bg="#c9c1a7")
 
+         # Initialize the database
+        self.initialize_database()
+
         # create mainframe to add message
         top = Frame(self.root)
         top.pack(side="top")
