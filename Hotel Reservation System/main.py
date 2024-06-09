@@ -1,4 +1,5 @@
 from tkinter import *
+import pygame
 from tkinter.font import Font
 import check_in_ui
 import check_out
@@ -43,30 +44,34 @@ class Hotel:
                                        command=check_out.check_out_ui)  # call check_out_ui function from check_out.py file
         self.check_out_button.grid(row=1, column=2, padx=10, pady=10)
 
-        # create show list button
-        self.room_info_button = Button(bottom, text="CUSTOMER INFORMATION", font=('Times', 20), bg="#948363", relief=RIDGE,
-                                       height=2,
-                                       width=50, fg="#ffe9a1", anchor="center",
-                                       command=get_info.get_info_ui)  # call get_info_ui function from get_info.py file
-        self.room_info_button.grid(row=2, column=2, padx=10, pady=10)
-
+        # create room type button
         self.room_type_button = Button(bottom, text="ROOM TYPE", font=('Times', 20), bg="#948363", relief=RIDGE,
                                         height=2, width=50, fg="#ffe9a1", anchor="center", command=room_type.room_type_ui)
-        self.room_type_button.grid(row=3, column=2, padx=10, pady=10)
+        self.room_type_button.grid(row=2, column=2, padx=10, pady=10)
 
-        # create information of all the guest
-        self.get_info_button = Button(bottom, text="LIST OF CUSTOMER", font=('Times', 20), bg="#948363",
-                                      relief=RIDGE,
-                                      height=2, width=50, fg="#ffe9a1", anchor="center",
-                                      command=customer_info.customer_info_ui)
-
-        self.get_info_button.grid(row=4, column=2, padx=10, pady=10)
-
-        # button to exit the program
+        # button to exit 
         self.exit_button = Button(bottom, text="EXIT", font=('Times', 20), bg="#948363", relief=RIDGE, height=2, width=50,
                                   fg="#ffe9a1",
                                   anchor="center", command=quit)
-        self.exit_button.grid(row=5, column=2, padx=10, pady=10)
+        self.exit_button.grid(row=3, column=2, padx=10, pady=10)
+
+        # Hide Customer Information and List of Customer buttons
+        self.room_info_button = Button(bottom, text="CUSTOMER INFORMATION 🔒", font=('Times', 20), bg="#948363", relief=RIDGE,
+                                       height=2,
+                                       width=50, fg="#ffe9a1", anchor="center",
+                                       command=get_info.get_info_ui, state=DISABLED)  # Disabled state
+        self.room_info_button.grid(row=4, column=2, padx=10, pady=10)
+
+        self.get_info_button = Button(bottom, text="LIST OF CUSTOMER 🔒", font=('Times', 20), bg="#948363",
+                                      relief=RIDGE,
+                                      height=2, width=50, fg="#ffe9a1", anchor="center",
+                                      command=customer_info.customer_info_ui, state=DISABLED)  # Disabled state
+        self.get_info_button.grid(row=5, column=2, padx=10, pady=10)
+
+
+    def play_music(self):
+        pygame.mixer.music.load("hotel_music.mp3")  
+        pygame.mixer.music.play(loops=-1)  
 
 
 def home_ui():
@@ -77,4 +82,5 @@ def home_ui():
 
 if __name__ == '__main__':
     home_ui()
+
 
