@@ -3,6 +3,7 @@ from tkinter import messagebox, ttk
 import random
 import openpyxl
 import main
+from room_availability import room_availability_ui
 
 class CheckIN:
     def __init__(self, root):
@@ -40,6 +41,10 @@ class CheckIN:
         # Submit Button
         self.submit_button = tk.Button(self.root, text="SUBMIT", command=self.submit_info)
         self.submit_button.pack()
+
+        # Room Availability Button
+        self.room_availability_button = tk.Button(self.root, text="CHECK ROOM AVAILABILITY", command=self.check_room_availability)
+        self.room_availability_button.pack()
 
         # Table
         self.table = ttk.Treeview(self.root, columns=('Name', 'Address', 'Mobile Number', 'Number of Days'))
