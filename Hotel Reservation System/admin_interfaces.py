@@ -3,6 +3,7 @@ from tkinter import ttk
 import get_info
 import customer_info
 from room_availability import room_availability_ui
+from booking_history import booking_history_ui
 
 class HotelAdmin:
     def __init__(self, root):
