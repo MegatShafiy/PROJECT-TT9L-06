@@ -43,4 +43,19 @@ class GuestInterface:
         self.exit_button = ttk.Button(self.main_frame, text="EXIT", style='Guest.TButton', command=self.exit_app)
         self.exit_button.pack(pady=10)
 
-   
+    def show_feedback(self):
+        feedback.feedback_ui()  # Call feedback_ui function from feedback.py file
+
+    def show_booking_history(self):
+        booking_history.booking_history_ui()  # Call booking_history_ui function from booking_history.py file
+
+    def show_room_availability(self):
+        room_availability.room_availability_ui()  # Call room_availability_ui function from room_availability.py file
+
+    def exit_app(self):
+        self.root.destroy()
+
+# Create the main application window
+root = Tk()
+app = GuestInterface(root)
+root.mainloop()
