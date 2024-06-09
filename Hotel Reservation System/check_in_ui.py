@@ -38,6 +38,17 @@ class CheckIN:
         self.days_entry = tk.Entry(self.root)
         self.days_entry.pack()
 
+        # Room Type Selection
+        self.room_type_label = tk.Label(self.root, text="SELECT ROOM TYPE:")
+        self.room_type_label.pack()
+
+        self.room_type_var = tk.StringVar(self.root)
+        self.room_type_var.set("Select")  # Default value
+
+        self.room_type_options = ["Single", "Double", "Suite"]  # Example room types
+        self.room_type_menu = tk.OptionMenu(self.root, self.room_type_var, *self.room_type_options)
+        self.room_type_menu.pack()
+
         # Submit Button
         self.submit_button = tk.Button(self.root, text="SUBMIT", command=self.submit_info)
         self.submit_button.pack()
