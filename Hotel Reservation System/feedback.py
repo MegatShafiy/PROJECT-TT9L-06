@@ -40,4 +40,23 @@ class FeedbackPage:
         self.back_button = ttk.Button(self.main_frame, text="BACK", style='Feedback.TButton', command=self.back_to_main)
         self.back_button.pack(pady=10)
 
-    
+    def submit_feedback(self):
+        name = self.name_entry.get()
+        feedback = self.feedback_text.get("1.0", END).strip()
+        print(f"Feedback received from {name}:\n{feedback}\n")
+
+        # Clear the entries after submission
+        self.name_entry.delete(0, END)
+        self.feedback_text.delete("1.0", END)
+
+        # Show confirmation message
+        self.confirmation_label = Label(self.main_frame, text="Thank you for your feedback!", font=('Times', 20), fg="green", bg="#c9c1a7")
+        self.confirmation_label.pack(pady=10)
+
+    def back_to_main(self):
+        self.root.destroy()
+
+def feedback_ui():
+    feedback_root = Tk()
+    app = FeedbackPage(feedback_root)
+    feedback_root.mainloop()
