@@ -7,7 +7,6 @@ import get_info
 import customer_info
 import room_type
 import os
-import room_availability
 
 
 class Hotel:
@@ -45,10 +44,10 @@ class Hotel:
                                        command=check_out.check_out_ui)  # call check_out_ui function from check_out.py file
         self.check_out_button.grid(row=1, column=2, padx=10, pady=10)
 
-        # create room type button
-        self.room_type_button = Button(bottom, text="ROOM TYPE", font=('Times', 20), bg="#948363", relief=RIDGE,
-                                        height=2, width=50, fg="#ffe9a1", anchor="center", command=room_type.room_type_ui)
-        self.room_type_button.grid(row=2, column=2, padx=10, pady=10)
+        # create feedback button
+        self.feedback_button = Button(bottom, text="FEEDBACK", font=('Times', 20), bg="#948363", relief=RIDGE,
+                                        height=2, width=50, fg="#ffe9a1", anchor="center", command=self.feedback)
+        self.feedback_button.grid(row=3, column=2, padx=10, pady=10)
 
         # button to exit 
         self.exit_button = Button(bottom, text="EXIT", font=('Times', 20), bg="#948363", relief=RIDGE, height=2, width=50,
