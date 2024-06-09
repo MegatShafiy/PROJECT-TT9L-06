@@ -2,9 +2,8 @@ from tkinter import *
 from tkinter import ttk
 import get_info
 import customer_info
-import room_availability import room_availability_ui
+from room_availability import room_availability_ui
 
-#admin interface
 class HotelAdmin:
     def __init__(self, root):
         self.root = root
@@ -63,5 +62,3 @@ class HotelAdmin:
 root = Tk()
 app = HotelAdmin(root)
 root.mainloop()
-
-
