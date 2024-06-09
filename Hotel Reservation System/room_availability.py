@@ -34,4 +34,9 @@ class RoomAvailabilityPage:
         self.back_button = ttk.Button(self.main_frame, text="BACK", style='Availability.TButton', command=self.back_to_main)
         self.back_button.pack(pady=10)
 
-        
+        # Results Frame
+        self.results_frame = Frame(self.main_frame, bg="#c9c1a7")
+        self.results_frame.pack(pady=20)
+
+    
+
