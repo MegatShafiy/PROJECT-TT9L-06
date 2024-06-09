@@ -19,4 +19,8 @@ class GuestInterface:
         self.label = Label(self.main_frame, text="Guest", font=('Times', 50, 'bold'), fg="#725700", bg="#c9c1a7")
         self.label.pack(pady=20)
 
-        
+        # Button styles
+        self.button_style = ttk.Style()
+        self.button_style.configure('Guest.TButton', font=('Times', 20), background="#948363", foreground="#ffe9a1")
+
+       
