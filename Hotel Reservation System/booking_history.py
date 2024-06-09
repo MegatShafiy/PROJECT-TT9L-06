@@ -29,7 +29,10 @@ class BookingHistoryPage:
         self.back_button = ttk.Button(self.main_frame, text="BACK", command=self.back_to_main)
         self.back_button.pack(pady=10)
 
-        
+        # Load booking history
+        self.load_booking_history()
+
+    
 
         
         
