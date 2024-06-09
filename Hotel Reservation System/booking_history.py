@@ -57,8 +57,8 @@ def booking_history_ui():
     history_root.mainloop()
 
 # Uncomment the lines below to test the booking history page independently
-# if __name__ == "__main__":
-#     booking_history_ui()
+if __name__ == "__main__":
+booking_history_ui()
 
         
         
