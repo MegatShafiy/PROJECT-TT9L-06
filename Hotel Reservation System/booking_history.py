@@ -32,7 +32,33 @@ class BookingHistoryPage:
         # Load booking history
         self.load_booking_history()
 
-    
+    def load_booking_history(self):
+        booking_history = self.get_booking_history()
+
+        for booking in booking_history:
+            self.tree.insert("", END, values=booking)
+
+    def get_booking_history(self):
+        # Dummy data for demonstration purposes
+        # Replace this with actual logic to fetch booking history
+        dummy_data = [
+            (1, "John Doe", 101, "2024-06-01", "2024-06-05"),
+            (2, "Jane Smith", 102, "2024-06-03", "2024-06-07"),
+            (3, "Alice Johnson", 103, "2024-06-02", "2024-06-06"),
+        ]
+        return dummy_data
+
+    def back_to_main(self):
+        self.root.destroy()
+
+def booking_history_ui():
+    history_root = Tk()
+    app = BookingHistoryPage(history_root)
+    history_root.mainloop()
+
+# Uncomment the lines below to test the booking history page independently
+# if __name__ == "__main__":
+#     booking_history_ui()
 
         
         
