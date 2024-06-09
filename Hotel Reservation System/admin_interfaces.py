@@ -6,8 +6,10 @@ import customer_info
 class HotelAdmin:
     def __init__(self, root):
         self.root = root
+        pad = 3
         self.root.title("K I N G S T O N  H O T E L")
-        self.root.geometry("800x600")
+        self.root.geometry(
+            "{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
         self.root.configure(bg="#c9c1a7")
 
         # Create main frame
@@ -49,7 +51,7 @@ class HotelAdmin:
     def exit_app(self):
         self.root.destroy()
 
-# Create the main application window
+
 root = Tk()
 app = HotelAdmin(root)
 root.mainloop()

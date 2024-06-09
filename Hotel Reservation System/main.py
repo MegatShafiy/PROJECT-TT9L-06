@@ -13,7 +13,7 @@ class Hotel:
     def __init__(self, root):
         self.root = root
         pad = 3
-        self.root.title("HOTEL MANAGEMENT SYSTEM")
+        self.root.title("K I N G S T O N   H O T E L")
         self.root.geometry(
             "{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
 
