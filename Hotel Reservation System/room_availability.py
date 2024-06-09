@@ -7,11 +7,25 @@ def check_availability(checkin_date, checkout_date):
     conn = sqlite3.connect('Hotel.db')  # Connect to the database
     try:
         cursor = conn.cursor()
-        cursor.execute('SELECT room_number FROM Bookings WHERE checkin_date <= ? AND checkout_date >= ?', (checkout_date, checkin_date))
+        
+        # Fetch available rooms for the selected period
+        cursor.execute('''
+            SELECT room_number 
+            FROM Rooms 
+            WHERE room_number NOT IN (
+                SELECT room_number 
+                FROM Bookings 
+                WHERE checkin_date <= ? AND checkout_date >= ?
+            )
+        ''', (checkout_date, checkin_date))
         available_rooms = cursor.fetchall()
         
         # Fetch availability dates for the selected period
-        cursor.execute('SELECT DISTINCT checkin_date, checkout_date FROM Bookings WHERE checkin_date >= ? AND checkout_date <= ?', (checkin_date, checkout_date))
+        cursor.execute('''
+            SELECT DISTINCT checkin_date, checkout_date 
+            FROM Bookings 
+            WHERE checkin_date >= ? AND checkout_date <= ?
+        ''', (checkin_date, checkout_date))
         availability_dates = cursor.fetchall()
         
         return available_rooms, availability_dates
