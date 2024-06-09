@@ -6,61 +6,69 @@ from room_availability import room_availability_ui
 import sqlite3
 from datetime import datetime
 
-class BookingHistoryPage:
+class CheckIN:
     def __init__(self, root):
         self.root = root
-        self.root.title("K I N G S T O N  H O T E L - BOOKING HISTORY")
-        self.root.geometry("800x600")
-        self.root.configure(bg="#c9c1a7")
+        self.root.title("CHECK IN")
 
-        # Create main frame
-        self.main_frame = Frame(self.root, bg="#c9c1a7")
-        self.main_frame.pack(fill=BOTH, expand=True, padx=20, pady=20)
+        self.create_widgets()
 
-        # Title label
-        self.label = Label(self.main_frame, text="Booking History", font=('Times', 30, 'bold'), fg="#725700", bg="#c9c1a7")
-        self.label.pack(pady=20)
+    def create_widgets(self):
+        self.name_label = tk.Label(self.root, text="ENTER YOUR NAME:")
+        self.name_label.pack()
+        self.name_entry = tk.Entry(self.root)
+        self.name_entry.pack()
 
-        # Treeview for displaying booking history
-        self.tree = ttk.Treeview(self.main_frame, columns=("Booking ID", "Customer Name", "Room Number", "Check-in Date", "Check-out Date"), show="headings")
-        self.tree.heading("Booking ID", text="Booking ID")
-        self.tree.heading("Customer Name", text="Customer Name")
-        self.tree.heading("Room Number", text="Room Number")
-        self.tree.heading("Check-in Date", text="Check-in Date")
-        self.tree.heading("Check-out Date", text="Check-out Date")
-        self.tree.pack(fill=BOTH, expand=True)
+        self.address_label = tk.Label(self.root, text="ENTER YOUR ADDRESS:")
+        self.address_label.pack()
+        self.address_entry = tk.Entry(self.root)
+        self.address_entry.pack()
 
-        # Back Button
-        self.back_button = ttk.Button(self.main_frame, text="BACK", command=self.back_to_main)
-        self.back_button.pack(pady=10)
+        self.mobile_label = tk.Label(self.root, text="ENTER YOUR MOBILE NUMBER:")
+        self.mobile_label.pack()
+        self.mobile_entry = tk.Entry(self.root)
+        self.mobile_entry.pack()
 
-        # Load booking history
-        self.load_booking_history()
+        self.days_label = tk.Label(self.root, text="ENTER NUMBER OF DAYS TO STAY:")
+        self.days_label.pack()
+        self.days_entry = tk.Entry(self.root)
+        self.days_entry.pack()
 
-    def load_booking_history(self):
-        booking_history = self.get_booking_history()
+        self.room_type_label = tk.Label(self.root, text="SELECT ROOM TYPE:")
+        self.room_type_label.pack()
+        self.room_type_var = tk.StringVar(self.root)
+        self.room_type_var.set("Select")
+        self.room_type_options = ["Single", "Double", "Suite"]
+        self.room_type_menu = tk.OptionMenu(self.root, self.room_type_var, *self.room_type_options)
+        self.room_type_menu.pack()
 
-        for booking in booking_history:
-            self.tree.insert("", END, values=booking)
+        self.room_availability_button = tk.Button(self.root, text="CHECK ROOM AVAILABILITY", command=self.check_room_availability)
+        self.room_availability_button.pack()
 
-    def get_booking_history(self):
-        # Dummy data for demonstration purposes
-        # Replace this with actual logic to fetch booking history
-        dummy_data = [
-            (1, "John Doe", 101, "2024-06-01", "2024-06-05"),
-            (2, "Jane Smith", 102, "2024-06-03", "2024-06-07"),
-            (3, "Alice Johnson", 103, "2024-06-02", "2024-06-06"),
-        ]
-        return dummy_data
+        self.submit_button = tk.Button(self.root, text="SUBMIT", command=self.submit_info)
+        self.submit_button.pack()
 
-    def back_to_main(self):
-        self.root.destroy()
+        self.table = ttk.Treeview(self.root, columns=('Name', 'Address', 'Mobile Number', 'Number of Days', 'Room Type', 'Room Number'))
+        self.table.heading('#0', text='ID')
+        self.table.heading('Name', text='Name')
+        self.table.heading('Address', text='Address')
+        self.table.heading('Mobile Number', text='Mobile Number')
+        self.table.heading('Number of Days', text='Number of Days')
+        self.table.heading('Room Type', text='Room Type')
+        self.table.heading('Room Number', text='Room Number')
+        self.table.pack()
 
-def booking_history_ui():
-    history_root = Tk()
-    app = BookingHistoryPage(history_root)
-    history_root.mainloop()
+    def submit_info(self):
+        name = self.name_entry.get()
+        address = self.address_entry.get()
+        mobile = self.mobile_entry.get()
+        days = self.days_entry.get()
+        room_type = self.room_type_var.get()
 
+        if not (name and address and mobile and days and room_type != "Select"):
+            messagebox.showerror("Error", "Please fill in all fields.")
+            return
+        
 
         
         
