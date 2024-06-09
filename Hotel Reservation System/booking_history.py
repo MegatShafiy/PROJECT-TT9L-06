@@ -69,7 +69,10 @@ class CheckIN:
             messagebox.showerror("Error", "Please fill in all fields.")
             return
         
-
+        # Add data to the table
+        row_id = len(self.table.get_children()) + 1
+        room_number = random.randint(100, 999)  # Randomly assign a room number for simplicity
+        self.table.insert('', 'end', text=row_id, values=(name, address, mobile, days, room_type, room_number))
         
         
         
