@@ -74,6 +74,31 @@ class CheckIN:
         room_number = random.randint(100, 999)  # Randomly assign a room number for simplicity
         self.table.insert('', 'end', text=row_id, values=(name, address, mobile, days, room_type, room_number))
         
-        
+        # Save to database
+        conn = sqlite3.connect('Hotel.db')
+        cursor = conn.cursor()
+        check_in_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        cursor.execute("INSERT INTO BookingHistory (Fullname, Address, MobileNumber, NumberOfDays, RoomType, RoomNumber, CheckInDate) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                       (name, address, mobile, days, room_type, room_number, check_in_date))
+        cursor.execute("INSERT INTO Hotel (Fullname, Address, MobileNumber, NumberOfDays, RoomType, RoomNumber) VALUES (?, ?, ?, ?, ?, ?)",
+                       (name, address, mobile, days, room_type, room_number))
+        cursor.execute("UPDATE RoomAvailability SET IsAvailable = 0 WHERE RoomNumber = ?", (room_number,))
+        conn.commit()
+        conn.close()
+
+        # Clear entry fields
+        self.name_entry.delete(0, 'end')
+        self.address_entry.delete(0, 'end')
+        self.mobile_entry.delete(0, 'end')
+        self.days_entry.delete(0, 'end')
+        self.room_type_var.set("Select")
+
+    def check_room_availability(self):
+        room_availability_ui()  # Call room_availability_ui function to show room availability
+
+def check_in_ui_fun():
+    root = tk.Tk()
+    application = CheckIN(root)
+    root.mainloop()
         
         
