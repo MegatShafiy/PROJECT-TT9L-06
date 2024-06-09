@@ -39,6 +39,11 @@ class HotelAdmin:
                                                    command=self.show_room_availability)
         self.room_availability_button.pack(pady=10)
 
+        # Booking History Button
+        self.booking_history_button = ttk.Button(self.main_frame, text="BOOKING HISTORY", style='Admin.TButton',
+                                                 command=self.show_booking_history)
+        self.booking_history_button.pack(pady=10)
+
         # Separator
         self.separator = ttk.Separator(self.main_frame, orient=HORIZONTAL)
         self.separator.pack(fill=X, pady=20)
