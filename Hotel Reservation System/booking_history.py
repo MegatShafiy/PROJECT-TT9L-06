@@ -25,6 +25,10 @@ class BookingHistoryPage:
         self.tree.heading("Check-out Date", text="Check-out Date")
         self.tree.pack(fill=BOTH, expand=True)
 
+        # Back Button
+        self.back_button = ttk.Button(self.main_frame, text="BACK", command=self.back_to_main)
+        self.back_button.pack(pady=10)
+
         
 
         
