@@ -35,4 +35,12 @@ class GuestInterface:
         self.room_availability_button = ttk.Button(self.main_frame, text="ROOM AVAILABILITY", style='Guest.TButton', command=self.show_room_availability)
         self.room_availability_button.pack(pady=10)
 
-        
+        # Separator
+        self.separator = ttk.Separator(self.main_frame, orient=HORIZONTAL)
+        self.separator.pack(fill=X, pady=20)
+
+        # Exit Button
+        self.exit_button = ttk.Button(self.main_frame, text="EXIT", style='Guest.TButton', command=self.exit_app)
+        self.exit_button.pack(pady=10)
+
+   
