@@ -75,6 +75,9 @@ class CheckIN:
         self.mobile_entry.delete(0, 'end')
         self.days_entry.delete(0, 'end')
 
+    def check_room_availability(self):
+        room_availability_ui()  # Call room_availability_ui function to show room availability
+
     def save_to_excel(self):
         wb = openpyxl.Workbook()
         ws = wb.active

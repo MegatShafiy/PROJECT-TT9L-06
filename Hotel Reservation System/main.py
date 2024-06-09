@@ -7,6 +7,7 @@ import get_info
 import customer_info
 import room_type
 import os
+import room_availability
 
 
 class Hotel:
@@ -68,6 +69,23 @@ class Hotel:
                                       command=customer_info.customer_info_ui, state=DISABLED)  # Disabled state
         self.get_info_button.grid(row=5, column=2, padx=10, pady=10)
 
+    def check_in(self):
+        check_in_ui.check_in_ui_fun()
+
+    def check_out(self):
+        check_out.check_out_ui()
+
+    def room_type(self):
+        room_type.room_type_ui()
+
+    def show_customer_info(self):
+        get_info.get_info_ui()
+
+    def show_customer_list(self):
+        customer_info.customer_info_ui()
+
+    def exit(self):
+        self.root.destroy()
 
     def play_music(self):
         pygame.mixer.music.load("hotel_music.mp3")  
