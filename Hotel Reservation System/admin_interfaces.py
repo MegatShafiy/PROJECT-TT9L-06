@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import get_info
 import customer_info
-
+import room_availability import room_availability_ui
 
 #admin interface
 class HotelAdmin:
