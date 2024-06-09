@@ -32,4 +32,8 @@ class FeedbackPage:
         self.button_style = ttk.Style()
         self.button_style.configure('Feedback.TButton', font=('Times', 18), background="#948363", foreground="#ffe9a1")
 
-        
+        # Submit Button
+        self.submit_button = ttk.Button(self.main_frame, text="SUBMIT", style='Feedback.TButton', command=self.submit_feedback)
+        self.submit_button.pack(pady=10)
+
+         
