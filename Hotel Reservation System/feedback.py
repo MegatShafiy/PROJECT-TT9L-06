@@ -36,4 +36,8 @@ class FeedbackPage:
         self.submit_button = ttk.Button(self.main_frame, text="SUBMIT", style='Feedback.TButton', command=self.submit_feedback)
         self.submit_button.pack(pady=10)
 
-         
+        # Back Button
+        self.back_button = ttk.Button(self.main_frame, text="BACK", style='Feedback.TButton', command=self.back_to_main)
+        self.back_button.pack(pady=10)
+
+    
