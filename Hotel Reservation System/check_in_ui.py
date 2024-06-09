@@ -49,21 +49,23 @@ class CheckIN:
         self.room_type_menu = tk.OptionMenu(self.root, self.room_type_var, *self.room_type_options)
         self.room_type_menu.pack()
 
-        # Submit Button
-        self.submit_button = tk.Button(self.root, text="SUBMIT", command=self.submit_info)
-        self.submit_button.pack()
-
         # Room Availability Button
         self.room_availability_button = tk.Button(self.root, text="CHECK ROOM AVAILABILITY", command=self.check_room_availability)
         self.room_availability_button.pack()
 
+        # Submit Button
+        self.submit_button = tk.Button(self.root, text="SUBMIT", command=self.submit_info)
+        self.submit_button.pack()
+
         # Table
-        self.table = ttk.Treeview(self.root, columns=('Name', 'Address', 'Mobile Number', 'Number of Days'))
+        self.table = ttk.Treeview(self.root, columns=('Name', 'Address', 'Mobile Number', 'Number of Days', 'Room Type', 'Availability'))
         self.table.heading('#0', text='ID')
         self.table.heading('Name', text='Name')
         self.table.heading('Address', text='Address')
         self.table.heading('Mobile Number', text='Mobile Number')
         self.table.heading('Number of Days', text='Number of Days')
+        self.table.heading('Room Type', text='Room Type')
+        self.table.heading('Availability', text='Availability')
         self.table.pack()
 
     def submit_info(self):
@@ -71,14 +73,16 @@ class CheckIN:
         address = self.address_entry.get()
         mobile = self.mobile_entry.get()
         days = self.days_entry.get()
+        room_type = self.room_type_var.get()
 
-        if not (name and address and mobile and days):
+        if not (name and address and mobile and days and room_type):
             messagebox.showerror("Error", "Please fill in all fields.")
             return
 
         # Add data to the table
         row_id = len(self.table.get_children()) + 1
-        self.table.insert('', 'end', text=row_id, values=(name, address, mobile, days))
+        availability = "Available"  # You can replace this with actual availability logic
+        self.table.insert('', 'end', text=row_id, values=(name, address, mobile, days, room_type, availability))
 
         # Clear entry fields
         self.name_entry.delete(0, 'end')
@@ -92,7 +96,7 @@ class CheckIN:
     def save_to_excel(self):
         wb = openpyxl.Workbook()
         ws = wb.active
-        ws.append(['ID', 'Name', 'Address', 'Mobile Number', 'Number of Days'])
+        ws.append(['ID', 'Name', 'Address', 'Mobile Number', 'Number of Days', 'Room Type', 'Availability'])
 
         for item in self.table.get_children():
             values = self.table.item(item, 'values')
