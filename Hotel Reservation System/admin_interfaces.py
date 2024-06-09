@@ -34,6 +34,11 @@ class HotelAdmin:
                                           command=self.show_customer_list)
         self.get_info_button.pack(pady=10)
 
+        # Room Availability Button
+        self.room_availability_button = ttk.Button(self.main_frame, text="ROOM AVAILABILITY", style='Admin.TButton',
+                                                   command=self.show_room_availability)
+        self.room_availability_button.pack(pady=10)
+
         # Separator
         self.separator = ttk.Separator(self.main_frame, orient=HORIZONTAL)
         self.separator.pack(fill=X, pady=20)
