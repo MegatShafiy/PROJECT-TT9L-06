@@ -15,4 +15,8 @@ class GuestInterface:
         self.main_frame = Frame(self.root, bg="#c9c1a7")
         self.main_frame.pack(fill=BOTH, expand=True)
 
+        # Title label
+        self.label = Label(self.main_frame, text="Guest", font=('Times', 50, 'bold'), fg="#725700", bg="#c9c1a7")
+        self.label.pack(pady=20)
+
         
