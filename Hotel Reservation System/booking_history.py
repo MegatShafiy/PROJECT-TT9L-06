@@ -16,6 +16,15 @@ class BookingHistoryPage:
         self.label = Label(self.main_frame, text="Booking History", font=('Times', 30, 'bold'), fg="#725700", bg="#c9c1a7")
         self.label.pack(pady=20)
 
+        # Treeview for displaying booking history
+        self.tree = ttk.Treeview(self.main_frame, columns=("Booking ID", "Customer Name", "Room Number", "Check-in Date", "Check-out Date"), show="headings")
+        self.tree.heading("Booking ID", text="Booking ID")
+        self.tree.heading("Customer Name", text="Customer Name")
+        self.tree.heading("Room Number", text="Room Number")
+        self.tree.heading("Check-in Date", text="Check-in Date")
+        self.tree.heading("Check-out Date", text="Check-out Date")
+        self.tree.pack(fill=BOTH, expand=True)
+
         
 
         
