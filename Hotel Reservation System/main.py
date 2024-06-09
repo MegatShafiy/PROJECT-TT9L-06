@@ -7,6 +7,8 @@ import get_info
 import customer_info
 import room_type
 import os
+import booking_history
+import feedback
 
 
 class Hotel:
@@ -80,12 +82,10 @@ class Hotel:
         check_out.check_out_ui()
 
     def feedback(self):
-        # Add code to handle feedback functionality
-        pass
+        feedback.feedback_ui()
 
     def booking_history(self):
-        # Add code to view booking history
-        pass
+        booking_history.booking_history_ui()
 
     def show_customer_info(self):
         get_info.get_info_ui()
