@@ -12,6 +12,10 @@ class BookingHistoryPage:
         self.main_frame = Frame(self.root, bg="#c9c1a7")
         self.main_frame.pack(fill=BOTH, expand=True, padx=20, pady=20)
 
+        # Title label
+        self.label = Label(self.main_frame, text="Booking History", font=('Times', 30, 'bold'), fg="#725700", bg="#c9c1a7")
+        self.label.pack(pady=20)
+
         
 
         
