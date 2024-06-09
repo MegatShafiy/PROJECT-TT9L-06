@@ -61,6 +61,9 @@ class HotelAdmin:
     def show_room_availability(self):
         room_availability_ui()  # Call room_availability_ui function for room availability
 
+    def show_booking_history(self):
+        booking_history_ui()  # Call booking_history_ui function for booking history
+
     def exit_app(self):
         self.root.destroy()
 
