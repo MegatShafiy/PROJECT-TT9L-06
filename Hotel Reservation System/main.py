@@ -49,6 +49,11 @@ class Hotel:
                                         height=2, width=50, fg="#ffe9a1", anchor="center", command=self.feedback)
         self.feedback_button.grid(row=3, column=2, padx=10, pady=10)
 
+        # create booking history button
+        self.booking_history_button = Button(bottom, text="BOOKING HISTORY", font=('Times', 20), bg="#948363", relief=RIDGE,
+                                        height=2, width=50, fg="#ffe9a1", anchor="center", command=self.booking_history)
+        self.booking_history_button.grid(row=4, column=2, padx=10, pady=10)
+
         # button to exit 
         self.exit_button = Button(bottom, text="EXIT", font=('Times', 20), bg="#948363", relief=RIDGE, height=2, width=50,
                                   fg="#ffe9a1",
@@ -74,8 +79,13 @@ class Hotel:
     def check_out(self):
         check_out.check_out_ui()
 
-    def room_type(self):
-        room_type.room_type_ui()
+    def feedback(self):
+        # Add code to handle feedback functionality
+        pass
+
+    def booking_history(self):
+        # Add code to view booking history
+        pass
 
     def show_customer_info(self):
         get_info.get_info_ui()
