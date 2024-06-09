@@ -31,4 +31,8 @@ class GuestInterface:
         self.booking_history_button = ttk.Button(self.main_frame, text="BOOKING HISTORY", style='Guest.TButton', command=self.show_booking_history)
         self.booking_history_button.pack(pady=10)
 
+        # Room Availability Button
+        self.room_availability_button = ttk.Button(self.main_frame, text="ROOM AVAILABILITY", style='Guest.TButton', command=self.show_room_availability)
+        self.room_availability_button.pack(pady=10)
+
         
