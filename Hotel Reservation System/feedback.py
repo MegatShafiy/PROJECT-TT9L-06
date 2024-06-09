@@ -28,4 +28,8 @@ class FeedbackPage:
         self.feedback_text = Text(self.main_frame, font=('Times', 18), width=50, height=10)
         self.feedback_text.pack(pady=5)
 
+        # Button styles
+        self.button_style = ttk.Style()
+        self.button_style.configure('Feedback.TButton', font=('Times', 18), background="#948363", foreground="#ffe9a1")
+
         
