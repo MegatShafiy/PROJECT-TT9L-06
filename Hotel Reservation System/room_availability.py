@@ -30,4 +30,8 @@ class RoomAvailabilityPage:
         self.check_button = ttk.Button(self.main_frame, text="CHECK AVAILABILITY", style='Availability.TButton', command=self.check_availability)
         self.check_button.pack(pady=10)
 
+        # Back Button
+        self.back_button = ttk.Button(self.main_frame, text="BACK", style='Availability.TButton', command=self.back_to_main)
+        self.back_button.pack(pady=10)
+
         
