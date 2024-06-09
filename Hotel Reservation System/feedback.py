@@ -16,4 +16,10 @@ class FeedbackPage:
         self.label = Label(self.main_frame, text="Feedback", font=('Times', 30, 'bold'), fg="#725700", bg="#c9c1a7")
         self.label.pack(pady=20)
 
+        # Name Label and Entry
+        self.name_label = Label(self.main_frame, text="Name:", font=('Times', 20), fg="#725700", bg="#c9c1a7")
+        self.name_label.pack(pady=5, anchor=W)
+        self.name_entry = Entry(self.main_frame, font=('Times', 18), width=30)
+        self.name_entry.pack(pady=5)
+
         
