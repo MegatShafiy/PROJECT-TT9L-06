@@ -26,5 +26,8 @@ class RoomAvailabilityPage:
         self.button_style = ttk.Style()
         self.button_style.configure('Availability.TButton', font=('Times', 18), background="#948363", foreground="#ffe9a1")
 
-        
+        # Check Availability Button
+        self.check_button = ttk.Button(self.main_frame, text="CHECK AVAILABILITY", style='Availability.TButton', command=self.check_availability)
+        self.check_button.pack(pady=10)
 
+        
