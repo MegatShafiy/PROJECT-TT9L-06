@@ -53,6 +53,9 @@ class HotelAdmin:
     def show_customer_list(self):
         customer_info.customer_info_ui()  # Call customer_info_ui function from customer_info.py file
 
+    def show_room_availability(self):
+        room_availability_ui()  # Call room_availability_ui function for room availability
+
     def exit_app(self):
         self.root.destroy()
 

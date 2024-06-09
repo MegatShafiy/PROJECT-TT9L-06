@@ -73,4 +73,3 @@ def room_availability_ui():
     availability_root = Tk()
     app = RoomAvailabilityPage(availability_root)
     availability_root.mainloop()
-
