@@ -23,4 +23,8 @@ class GuestInterface:
         self.button_style = ttk.Style()
         self.button_style.configure('Guest.TButton', font=('Times', 20), background="#948363", foreground="#ffe9a1")
 
-       
+        # Feedback Button
+        self.feedback_button = ttk.Button(self.main_frame, text="FEEDBACK", style='Guest.TButton', command=self.show_feedback)
+        self.feedback_button.pack(pady=10)
+
+        
