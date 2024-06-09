@@ -27,4 +27,8 @@ class GuestInterface:
         self.feedback_button = ttk.Button(self.main_frame, text="FEEDBACK", style='Guest.TButton', command=self.show_feedback)
         self.feedback_button.pack(pady=10)
 
+        # Booking History Button
+        self.booking_history_button = ttk.Button(self.main_frame, text="BOOKING HISTORY", style='Guest.TButton', command=self.show_booking_history)
+        self.booking_history_button.pack(pady=10)
+
         
