@@ -1,7 +1,6 @@
-import sqlite3
 from tkinter import *
+import sqlite3
 import main
-
 
 class GetInfo:
     def __init__(self, root):
@@ -35,16 +34,13 @@ class GetInfo:
                                    anchor="center", bg="#948363")
         self.room_no_label.grid(row=2, column=2, padx=10, pady=10)
 
-
         self.room_number = IntVar()
         self.room_no_entry = Entry(bottom, width=5, text=self.room_number)
         self.room_no_entry.grid(row=2, column=3, padx=10, pady=10)
 
-
         self.info_label = Label(bottom, font=('Times', 20, 'bold'), text="CUSTOMER INFORMATION HERE :", fg="#ffe9a1",
                                 anchor="center", bg="#948363")
         self.info_label.grid(row=3, column=2, columnspan=2, padx=10, pady=10)
-
 
         self.get_info_entry = Text(info_frame, height=15, width=90)
         self.get_info_entry.grid(row=1, column=1, padx=10, pady=10)
@@ -72,7 +68,10 @@ class GetInfo:
                         for i in ans:
                             if room_number1 == int(i[4]):
                                 self.get_info_entry.insert(INSERT,
-                                                           'NAME: ' + str(i[0]) + '\nADDRESS: ' + str(i[1]) + '\nMOBILE NUMBER:  ' + str(i[2]) + '\nNUMBER OF DAYS: ' + str(i[3]) + '\nROOM NUMBER: ' + str(i[4]) + '\n')
+                                                           'NAME: ' + str(i[0]) + '\nADDRESS: ' + str(
+                                                               i[1]) + '\nMOBILE NUMBER:  ' + str(
+                                                               i[2]) + '\nNUMBER OF DAYS: ' + str(
+                                                               i[3]) + '\nROOM NUMBER: ' + str(i[4]) + '\n')
                 else:
                     self.get_info_entry.insert(INSERT, "\nPLEASE ENTER VALID ROOM NUMBER")
 
@@ -81,16 +80,20 @@ class GetInfo:
                                     width=15, fg="#ffe9a1", anchor="center", command=get_info)
         self.submit_button.grid(row=8, column=2, padx=10, pady=10)
 
-        # create home button
-        self.home_button = Button(button_frame, text="HOME", font=('Times', 15), bg="#948363", relief=RIDGE, height=2,
-                                  width=15, fg="#ffe9a1", anchor="center", command=main.home_ui)
-        self.home_button.grid(row=8, column=3, padx=10, pady=10)
+        # create back button
+        self.back_button = Button(button_frame, text="BACK", font=('Times', 15), bg="#948363", relief=RIDGE, height=2,
+                                  width=15, fg="#ffe9a1", anchor="center", command=self.go_back)
+        self.back_button.grid(row=8, column=3, padx=10, pady=10)
 
+    def go_back(self):
+        self.root.destroy()
+        main.home_ui()
 
 def get_info_ui():
     root = Tk()
     application = GetInfo(root)
     root.mainloop()
+
 
 
 
