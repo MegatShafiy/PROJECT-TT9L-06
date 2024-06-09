@@ -1,5 +1,10 @@
-from tkinter import *
-from tkinter import ttk
+import tkinter as tk
+from tkinter import messagebox, ttk
+import openpyxl
+import main
+from room_availability import room_availability_ui
+import sqlite3
+from datetime import datetime
 
 class BookingHistoryPage:
     def __init__(self, root):
@@ -56,9 +61,6 @@ def booking_history_ui():
     app = BookingHistoryPage(history_root)
     history_root.mainloop()
 
-# Uncomment the lines below to test the booking history page independently
-if __name__ == "__main__":
-booking_history_ui()
 
         
         
