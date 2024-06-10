@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import get_info
 import customer_info
+from room_availability import room_availability_ui
 
 class HotelAdmin:
     def __init__(self, root):
@@ -34,6 +35,10 @@ class HotelAdmin:
                                           command=self.show_customer_list)
         self.get_info_button.pack(pady=10)
 
+        self.room_availability_button = ttk.Button(self.main_frame, text="ROOM AVAILABILITY", style='Admin.TButton',
+                                                   command=self.show_room_availability)
+        self.room_availability_button.pack(pady=10)
+
         # Separator
         self.separator = ttk.Separator(self.main_frame, orient=HORIZONTAL)
         self.separator.pack(fill=X, pady=20)
@@ -47,6 +52,9 @@ class HotelAdmin:
 
     def show_customer_list(self):
         customer_info.customer_info_ui()  # Call customer_info_ui function from customer_info.py file
+
+    def show_room_availability(self):
+        room_availability_ui()
 
     def exit_app(self):
         self.root.destroy()
