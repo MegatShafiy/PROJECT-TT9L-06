@@ -3,7 +3,6 @@ from tkinter import messagebox, ttk
 import random
 import openpyxl
 import main
-from room_availability import room_availability_ui
 
 class CheckIN:
     def __init__(self, root):
@@ -49,23 +48,18 @@ class CheckIN:
         self.room_type_menu = tk.OptionMenu(self.root, self.room_type_var, *self.room_type_options)
         self.room_type_menu.pack()
 
-        # Room Availability Button
-        self.room_availability_button = tk.Button(self.root, text="CHECK ROOM AVAILABILITY", command=self.check_room_availability)
-        self.room_availability_button.pack()
-
         # Submit Button
         self.submit_button = tk.Button(self.root, text="SUBMIT", command=self.submit_info)
         self.submit_button.pack()
 
         # Table
-        self.table = ttk.Treeview(self.root, columns=('Name', 'Address', 'Mobile Number', 'Number of Days', 'Room Type', 'Availability'))
+        self.table = ttk.Treeview(self.root, columns=('Name', 'Address', 'Mobile Number', 'Number of Days', 'Room Type'))
         self.table.heading('#0', text='ID')
         self.table.heading('Name', text='Name')
         self.table.heading('Address', text='Address')
         self.table.heading('Mobile Number', text='Mobile Number')
         self.table.heading('Number of Days', text='Number of Days')
         self.table.heading('Room Type', text='Room Type')
-        self.table.heading('Availability', text='Availability')
         self.table.pack()
 
     def submit_info(self):
@@ -79,24 +73,16 @@ class CheckIN:
             messagebox.showerror("Error", "Please fill in all fields.")
             return
 
-        # Add data to the table
-        row_id = len(self.table.get_children()) + 1
-        availability = "Available"  # You can replace this with actual availability logic
-        self.table.insert('', 'end', text=row_id, values=(name, address, mobile, days, room_type, availability))
-
         # Clear entry fields
         self.name_entry.delete(0, 'end')
         self.address_entry.delete(0, 'end')
         self.mobile_entry.delete(0, 'end')
         self.days_entry.delete(0, 'end')
 
-    def check_room_availability(self):
-        room_availability_ui()  # Call room_availability_ui function to show room availability
-
     def save_to_excel(self):
         wb = openpyxl.Workbook()
         ws = wb.active
-        ws.append(['ID', 'Name', 'Address', 'Mobile Number', 'Number of Days', 'Room Type', 'Availability'])
+        ws.append(['ID', 'Name', 'Address', 'Mobile Number', 'Number of Days', 'Room Type'])
 
         for item in self.table.get_children():
             values = self.table.item(item, 'values')
