@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 import sqlite3
 import main
 
@@ -34,9 +35,17 @@ class GetInfo:
                                    anchor="center", bg="#948363")
         self.room_no_label.grid(row=2, column=2, padx=10, pady=10)
 
-        self.room_number = IntVar()
-        self.room_no_entry = Entry(bottom, width=5, text=self.room_number)
-        self.room_no_entry.grid(row=2, column=3, padx=10, pady=10)
+        # Fetch room numbers from the database
+        conn = sqlite3.connect('Hotel.db')
+        with conn:
+            cursor = conn.cursor()
+            cursor.execute("CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT, Address TEXT, mobile_number TEXT, number_days TEXT, room_number NUMBER)")
+            cursor.execute("SELECT room_number FROM Hotel")
+            room_numbers = [str(row[0]) for row in cursor.fetchall()]
+
+        self.room_number = StringVar()
+        self.room_no_combobox = ttk.Combobox(bottom, textvariable=self.room_number, values=room_numbers, state='readonly')
+        self.room_no_combobox.grid(row=2, column=3, padx=10, pady=10)
 
         self.info_label = Label(bottom, font=('Times', 20, 'bold'), text="CUSTOMER INFORMATION HERE :", fg="#ffe9a1",
                                 anchor="center", bg="#948363")
@@ -46,32 +55,29 @@ class GetInfo:
         self.get_info_entry.grid(row=1, column=1, padx=10, pady=10)
 
         def get_info():
-            room_number1 = int(self.room_no_entry.get())
+            room_number1 = self.room_no_combobox.get()
             conn = sqlite3.connect('Hotel.db')
             with conn:
                 cursor = conn.cursor()
             cursor.execute(
-                'CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT,room_number NUMBER)')
+                'CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT, room_number NUMBER)')
             cursor.execute(
                 'CREATE TABLE IF NOT EXISTS Amount (ID INTEGER PRIMARY KEY AUTOINCREMENT, room_number NUMBER, amount_people NUMBER)')
             conn.commit()
             with conn:
                 cursor.execute("SELECT room_number FROM Hotel")
                 ans = cursor.fetchall()
-                room = []
-                for i in ans:
-                    room.append(i[0])
+                room = [str(i[0]) for i in ans]
                 if room_number1 in room:
                     with conn:
-                        cursor.execute("SELECT * FROM Hotel")
+                        cursor.execute("SELECT * FROM Hotel WHERE room_number=?", (room_number1,))
                         ans = cursor.fetchall()
                         for i in ans:
-                            if room_number1 == int(i[4]):
-                                self.get_info_entry.insert(INSERT,
-                                                           'NAME: ' + str(i[0]) + '\nADDRESS: ' + str(
-                                                               i[1]) + '\nMOBILE NUMBER:  ' + str(
-                                                               i[2]) + '\nNUMBER OF DAYS: ' + str(
-                                                               i[3]) + '\nROOM NUMBER: ' + str(i[4]) + '\n')
+                            self.get_info_entry.insert(INSERT,
+                                                       'NAME: ' + str(i[0]) + '\nADDRESS: ' + str(
+                                                           i[1]) + '\nMOBILE NUMBER:  ' + str(
+                                                           i[2]) + '\nNUMBER OF DAYS: ' + str(
+                                                           i[3]) + '\nROOM NUMBER: ' + str(i[4]) + '\n')
                 else:
                     self.get_info_entry.insert(INSERT, "\nPLEASE ENTER VALID ROOM NUMBER")
 
@@ -93,6 +99,7 @@ def get_info_ui():
     root = Tk()
     application = GetInfo(root)
     root.mainloop()
+
 
 
 

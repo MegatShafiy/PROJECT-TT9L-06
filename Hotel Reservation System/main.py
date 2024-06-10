@@ -8,15 +8,27 @@ import customer_info
 import room_type
 import os
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+audio_file_path = os.path.join(BASE_DIR, 'hotel_music.mp3')
+
+
+
+pygame.mixer.init()
+
+def play_music():
+        pygame.mixer.music.load("hotel_music.mp3")
+        pygame.mixer.music.play(loops=0)
 
 class Hotel:
+
     def __init__(self, root):
         self.root = root
+        
         pad = 3
         self.root.title("K I N G S T O N   H O T E L")
         self.root.geometry(
             "{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
-
+        play_music()
         # set background color
         self.root.configure(bg="#c9c1a7")
 
@@ -67,17 +79,15 @@ class Hotel:
                                       height=2, width=50, fg="#ffe9a1", anchor="center",
                                       command=customer_info.customer_info_ui, state=DISABLED)  # Disabled state
         self.get_info_button.grid(row=5, column=2, padx=10, pady=10)
-
-
-    def play_music(self):
-        pygame.mixer.music.load("hotel_music.mp3")  
-        pygame.mixer.music.play(loops=-1)  
+      
+  
 
 
 def home_ui():
     root = Tk()
     application = Hotel(root)
     root.mainloop()
+
 
 
 if __name__ == '__main__':

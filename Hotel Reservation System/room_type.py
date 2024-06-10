@@ -45,7 +45,7 @@ class RoomType:
         self.back_button = Button(bottom, text="BACK", font=('Times New Roman', 20, 'bold'), bg="#725700", relief=RAISED, height=2, width=20, fg="#ffe9a1", anchor="center", command=self.go_back)
         self.back_button.pack(pady=10)
 
-        self.create_room_type_table()
+        self.remove_room_type_table()  # Remove room type table
 
     def create_room_type_selection(self, parent):
         for idx, (room_type, description) in enumerate(self.room_types):
@@ -60,12 +60,11 @@ class RoomType:
             label_desc = Label(frame, font=('Times New Roman', 16), text=description, fg="#725700", anchor="w", bg="#c9c1a7", padx=10, pady=5)
             label_desc.pack(side="right")
 
-    def create_room_type_table(self):
+    def remove_room_type_table(self):
         conn = sqlite3.connect('Hotel.db')
         with conn:
             cursor = conn.cursor()
-            cursor.execute(
-                'CREATE TABLE IF NOT EXISTS RoomType (ID INTEGER PRIMARY KEY AUTOINCREMENT, Fullname TEXT, room_number INTEGER, room_type TEXT)')
+            cursor.execute('DROP TABLE IF EXISTS RoomType')
             conn.commit()
 
     def submit_selection(self):
@@ -90,6 +89,9 @@ def room_type_ui():
     root = Tk()
     app = RoomType(root)
     root.mainloop()
+
+
+
 
 
 

@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.ttk import Separator
 import tkinter as tk
 import sqlite3
 import main
@@ -7,16 +8,18 @@ class CustomerInfo:
     def __init__(self, root):
         self.root = root
         pad = 3
-        self.root.title("Customer Information")
+        self.root.title("LIST OF CUSTOMER")
         self.root.geometry("{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
-        self.root.configure(bg="#F5F5F5")
+        self.root.configure(bg="#c9c1a7")  # Dark mode background color
+
 
         # Colors
-        header_bg = "#2C3E50"
-        content_bg = "#ECF0F1"
-        label_bg = "#3498DB"
-        button_bg = "#E74C3C"
-        button_fg = "#FFFFFF"
+        header_bg = "#725700"
+        content_bg = "#c9c1a7"
+        label_bg = "#000000"
+        button_bg = "#725700"
+        button_fg = "#ffe9a1"
+        old_money_bg = "#6A4D23"  # Old money style color
 
         # Create main frames
         top = Frame(self.root, bg=header_bg)
@@ -32,18 +35,18 @@ class CustomerInfo:
         bottom.pack(side="bottom", fill="x")
 
         # Header Label
-        self.label = Label(top, font=('Times', 40, 'bold'), text="Customer Information", fg="#FFFFFF", bg=header_bg)
+        self.label = Label(top, font=('Times', 40, 'bold'), text="CUSTOMER INFORMATION", fg="#ffe9a1", bg=header_bg)
         self.label.pack(pady=20)
 
-        # Name Label and Entry
-        self.name_label = Label(left, font=('Times', 20, 'bold'), text="Name", fg="#FFFFFF", bg=label_bg, width=15)
+        # Name Entry
+        self.name_label = Label(left, font=('Times', 20, 'bold'), text="Name", fg="#ffe9a1", bg=old_money_bg, width=15)
         self.name_label.grid(row=0, column=0, padx=10, pady=10)
 
         self.name_customer_entry = Text(left, height=20, width=40, font=('Times', 16), bg="#FFFFFF", fg="#000000")
         self.name_customer_entry.grid(row=1, column=0, padx=10, pady=10)
 
-        # Room No Label and Entry
-        self.room_no_label = Label(right, font=('Times', 20, 'bold'), text="Room No", fg="#FFFFFF", bg=label_bg, width=15)
+        # Room No Entry
+        self.room_no_label = Label(right, font=('Times', 20, 'bold'), text="Room No", fg="#ffe9a1", bg=old_money_bg, width=15)
         self.room_no_label.grid(row=0, column=0, padx=10, pady=10)
 
         self.room_no_customer_entry = Text(right, height=20, width=40, font=('Times', 16), bg="#FFFFFF", fg="#000000")
@@ -90,10 +93,14 @@ class CustomerInfo:
 
     def go_back(self):
         self.root.destroy()
-        main.home_ui()  # Assuming main.home_ui() is defined elsewhere
+        main.home_ui() 
 
 def customer_info_ui():
     root = tk.Tk()
     application = CustomerInfo(root)
-    root.mainloop()
+   
+
+
+
+
 

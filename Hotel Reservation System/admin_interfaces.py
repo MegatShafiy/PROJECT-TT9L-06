@@ -18,7 +18,7 @@ class HotelAdmin:
         self.main_frame.pack(fill=BOTH, expand=True)
 
         # Title label
-        self.label = Label(self.main_frame, text="Admin", font=('Times', 50, 'bold'), fg="#725700", bg="#c9c1a7")
+        self.label = Label(self.main_frame, text="ADMIN 🛠", font=('Times', 50, 'bold'), fg="#725700", bg="#c9c1a7")
         self.label.pack(pady=20)
 
         # Button styles
@@ -63,5 +63,6 @@ class HotelAdmin:
 root = Tk()
 app = HotelAdmin(root)
 root.mainloop()
+
 
 

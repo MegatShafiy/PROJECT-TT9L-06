@@ -44,7 +44,7 @@ class CheckIN:
         main_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
 
         # Room Number
-        self.room_number = random.randint(1, 200)
+        self.room_number = random.randint(101, 200)
         self.room_label = tk.Label(main_frame, text=f"Room Number: {self.room_number}", font=('Times', 16, 'bold'), bg="#c9c1a7", fg="#725700")
         self.room_label.grid(row=0, column=0, columnspan=2, pady=10, sticky="w")
 
