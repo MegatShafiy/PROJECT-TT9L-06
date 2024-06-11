@@ -47,6 +47,9 @@ class GetInfo:
         self.room_no_combobox = ttk.Combobox(bottom, textvariable=self.room_number, values=room_numbers, state='readonly')
         self.room_no_combobox.grid(row=2, column=3, padx=10, pady=10)
 
+        # Bind the event to clear the text box when a new room number is selected
+        self.room_no_combobox.bind("<<ComboboxSelected>>", lambda event: self.get_info_entry.delete(1.0, END))
+
         self.info_label = Label(bottom, font=('Times', 20, 'bold'), text="CUSTOMER INFORMATION HERE :", fg="#ffe9a1",
                                 anchor="center", bg="#948363")
         self.info_label.grid(row=3, column=2, columnspan=2, padx=10, pady=10)
@@ -99,6 +102,7 @@ def get_info_ui():
     root = Tk()
     application = GetInfo(root)
     root.mainloop()
+
 
 
 

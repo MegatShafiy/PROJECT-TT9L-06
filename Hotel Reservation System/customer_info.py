@@ -46,7 +46,7 @@ class CustomerInfo:
         self.name_customer_entry.grid(row=1, column=0, padx=10, pady=10)
 
         # Room No Entry
-        self.room_no_label = Label(right, font=('Times', 20, 'bold'), text="Room No", fg="#ffe9a1", bg=old_money_bg, width=15)
+        self.room_no_label = Label(right, font=('Times', 20, 'bold'), text="Room Number", fg="#ffe9a1", bg=old_money_bg, width=15)
         self.room_no_label.grid(row=0, column=0, padx=10, pady=10)
 
         self.room_no_customer_entry = Text(right, height=20, width=40, font=('Times', 16), bg="#FFFFFF", fg="#000000")
