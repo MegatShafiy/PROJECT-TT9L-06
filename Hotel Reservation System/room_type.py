@@ -28,16 +28,18 @@ class RoomType:
         self.label = Label(top, font=('Times New Roman', 50, 'bold'), text="ROOM TYPE", fg="#725700", anchor="center", bg="#c9c1a7")
         self.label.pack(pady=10)
 
-         # room type information with image paths
+        # room type information with image paths
         self.room_types = [
-            ("Single Room", "Room assigned to one person. May have one or two beds.", "single_room.jpg"),
-            ("Double Room", "Room assigned to two people. May have one or more beds.", "double_room.jpg"),
-            ("Suite", "A set of rooms designated for a particular purpose such as a bedroom, living room, and kitchen.", "suite.jpg"),
-            ("Family Room", "A room with several beds, often designed for family accommodation.", "family_room.jpg")
+            ("Single Room", "Room assigned to one person. May have one or two beds.", "C:\Users\User\Documents\GitHub\PROJECT-TT9L-06\Hotel Reservation System\single_room.jpg"),
+            ("Double Room", "Room assigned to two people. May have one or more beds.", "C:\Users\User\Documents\GitHub\PROJECT-TT9L-06\Hotel Reservation System\double_room.jpg"),
+            ("Suite", "A set of rooms designated for a particular purpose such as a bedroom, living room, and kitchen.", "C:\Users\User\Documents\GitHub\PROJECT-TT9L-06\Hotel Reservation System\suite.jpg"),
+            ("Family Room", "A room with several beds, often designed for family accommodation.", "C:\Users\User\Documents\GitHub\PROJECT-TT9L-06\Hotel Reservation System\family_room.jpg")
         ]
 
         self.selected_room_type = StringVar()
         self.selected_room_type.set(self.room_types[0][0]) 
+
+        self.image_refs = []  # Keep a reference to the images to prevent garbage collection
 
         self.create_room_type_selection(left)
         self.submit_button = Button(bottom, text="SUBMIT", font=('Times New Roman', 20, 'bold'), bg="#725700", relief=RAISED, height=2, width=20, fg="#ffe9a1", anchor="center", command=self.submit_selection)
@@ -48,28 +50,33 @@ class RoomType:
 
         self.remove_room_type_table()  # Remove room type table
 
-
     def create_room_type_selection(self, parent):
         for idx, (room_type, description, image_path) in enumerate(self.room_types):
             frame = Frame(parent, bg="#c9c1a7", relief="solid", bd=2)
             frame.pack(fill="x", padx=10, pady=5)
 
-            # Load and resize the image
-            image = Image.open(image_path)
-            image = image.resize((100, 100), Image.ANTIALIAS)
-            photo = ImageTk.PhotoImage(image)
+            try:
+                # Load and resize the image
+                image = Image.open(image_path)
+                image = image.resize((100, 100), Image.ANTIALIAS)
+                photo = ImageTk.PhotoImage(image)
 
-            # using radio_button to make options that can be selected
-            radio_button = Radiobutton(frame, text=room_type, variable=self.selected_room_type, value=room_type, font=('Times New Roman', 20, 'bold'), bg="#c9c1a7", fg="#725700", anchor="w", padx=10, pady=5, selectcolor="white")
-            radio_button.pack(side="left")
+                # Add the image reference to the list to prevent garbage collection
+                self.image_refs.append(photo)
+                
+                # using radio_button to make options that can be selected
+                radio_button = Radiobutton(frame, text=room_type, variable=self.selected_room_type, value=room_type, font=('Times New Roman', 20, 'bold'), bg="#c9c1a7", fg="#725700", anchor="w", padx=10, pady=5, selectcolor="white")
+                radio_button.pack(side="left")
 
-            label_desc = Label(frame, font=('Times New Roman', 16), text=description, fg="#725700", anchor="w", bg="#c9c1a7", padx=10, pady=5)
-            label_desc.pack(side="right")
+                label_desc = Label(frame, font=('Times New Roman', 16), text=description, fg="#725700", anchor="w", bg="#c9c1a7", padx=10, pady=5)
+                label_desc.pack(side="right")
 
-            # Add the image to the frame
-            image_label = Label(frame, image=photo, bg="#c9c1a7")
-            image_label.image = photo  # Keep a reference to avoid garbage collection
-            image_label.pack(side="right", padx=10)
+                # Add the image to the frame
+                image_label = Label(frame, image=photo, bg="#c9c1a7")
+                image_label.image = photo  # Keep a reference to avoid garbage collection
+                image_label.pack(side="right", padx=10)
+            except Exception as e:
+                print(f"Error loading image {image_path}: {e}")
 
     def remove_room_type_table(self):
         conn = sqlite3.connect('Hotel.db')
@@ -100,10 +107,3 @@ def room_type_ui():
     root = Tk()
     app = RoomType(root)
     root.mainloop()
-
-
-
-
-
-
-
