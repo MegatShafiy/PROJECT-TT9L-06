@@ -30,10 +30,10 @@ class RoomType:
 
         # room type information with image paths
         self.room_types = [
-            ("Single Room", "Room assigned to one person. May have one or two beds.", "C:\Users\User\Documents\GitHub\PROJECT-TT9L-06\Hotel Reservation System\single_room.jpg"),
-            ("Double Room", "Room assigned to two people. May have one or more beds.", "C:\Users\User\Documents\GitHub\PROJECT-TT9L-06\Hotel Reservation System\double_room.jpg"),
-            ("Suite", "A set of rooms designated for a particular purpose such as a bedroom, living room, and kitchen.", "C:\Users\User\Documents\GitHub\PROJECT-TT9L-06\Hotel Reservation System\suite.jpg"),
-            ("Family Room", "A room with several beds, often designed for family accommodation.", "C:\Users\User\Documents\GitHub\PROJECT-TT9L-06\Hotel Reservation System\family_room.jpg")
+            ("Single Room", "Room assigned to one person. May have one or two beds.", "single_room.jpg"),
+            ("Double Room", "Room assigned to two people. May have one or more beds.", "double_room.jpg"),
+            ("Suite", "A set of rooms designated for a particular purpose such as a bedroom, living room, and kitchen.", "suite.jpg"),
+            ("Family Room", "A room with several beds, often designed for family accommodation.", "family_room.jpg")
         ]
 
         self.selected_room_type = StringVar()
