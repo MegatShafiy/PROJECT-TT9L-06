@@ -49,6 +49,29 @@ class RoomType:
         self.remove_room_type_table()  # Remove room type table
 
 
+    def create_room_type_selection(self, parent):
+        for idx, (room_type, description, image_path) in enumerate(self.room_types):
+            frame = Frame(parent, bg="#c9c1a7", relief="solid", bd=2)
+            frame.pack(fill="x", padx=10, pady=5)
+
+            # Load and resize the image
+            image = Image.open(image_path)
+            image = image.resize((100, 100), Image.ANTIALIAS)
+            photo = ImageTk.PhotoImage(image)
+
+            # using radio_button to make options that can be selected
+            radio_button = Radiobutton(frame, text=room_type, variable=self.selected_room_type, value=room_type, font=('Times New Roman', 20, 'bold'), bg="#c9c1a7", fg="#725700", anchor="w", padx=10, pady=5, selectcolor="white")
+            radio_button.pack(side="left")
+
+            label_desc = Label(frame, font=('Times New Roman', 16), text=description, fg="#725700", anchor="w", bg="#c9c1a7", padx=10, pady=5)
+            label_desc.pack(side="right")
+
+            # Add the image to the frame
+            image_label = Label(frame, image=photo, bg="#c9c1a7")
+            image_label.image = photo  # Keep a reference to avoid garbage collection
+            image_label.pack(side="right", padx=10)
+
+
 
 
 
