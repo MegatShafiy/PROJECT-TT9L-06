@@ -71,6 +71,35 @@ class RoomType:
             image_label.image = photo  # Keep a reference to avoid garbage collection
             image_label.pack(side="right", padx=10)
 
+    def remove_room_type_table(self):
+        conn = sqlite3.connect('Hotel.db')
+        with conn:
+            cursor = conn.cursor()
+            cursor.execute('DROP TABLE IF EXISTS RoomType')
+            conn.commit()
+
+    def submit_selection(self):
+        selected_room = self.selected_room_type.get()
+        print(f"Selected Room Type: {selected_room}")
+        self.save_room_type(selected_room)
+
+    def save_room_type(self, room_type):
+        fullname = "" 
+        room_number = 101 
+        conn = sqlite3.connect('Hotel.db')
+        with conn:
+            cursor = conn.cursor()
+            cursor.execute('INSERT INTO RoomType (Fullname, room_number, room_type) VALUES (?, ?, ?)', (fullname, room_number, room_type))
+            conn.commit()
+
+    def go_back(self):
+        self.root.destroy()
+        main.home_ui()
+
+def room_type_ui():
+    root = Tk()
+    app = RoomType(root)
+    root.mainloop()
 
 
 
