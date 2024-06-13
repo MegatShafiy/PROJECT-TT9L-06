@@ -1,78 +1,104 @@
-import sqlite3
 from tkinter import *
+from tkinter.ttk import Separator
+import tkinter as tk
+import sqlite3
 import main
-
 
 class CustomerInfo:
     def __init__(self, root):
         self.root = root
         pad = 3
-        self.root.title("CUSTOMER INFO")
-        self.root.geometry(
-            "{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
+        self.root.title("LIST OF CUSTOMER")
+        self.root.geometry("{0}x{1}+0+0".format(self.root.winfo_screenwidth() - pad, self.root.winfo_screenheight() - pad))
+        self.root.configure(bg="#c9c1a7")  # Dark mode background color
 
-        # create mainframe to add message
-        top = Frame(self.root)
-        top.pack(side="top")
 
-        bottom = Frame(self.root)
-        bottom.pack(side="top")
+        # Colors
+        header_bg = "#725700"
+        content_bg = "#c9c1a7"
+        label_bg = "#000000"
+        button_bg = "#725700"
+        button_fg = "#ffe9a1"
+        old_money_bg = "#6A4D23"  # Old money style color
 
-        left = Frame(self.root, relief="solid")
-        left.pack(side="left")
+        # Create main frames
+        top = Frame(self.root, bg=header_bg)
+        top.pack(side="top", fill="x")
 
-        right = Frame(self.root, relief="solid")
-        right.pack(side="left")
+        left = Frame(self.root, bg=content_bg)
+        left.pack(side="left", fill="both", expand=True, padx=20, pady=20)
 
-        # display message
-        self.label = Label(top, font=('arial', 50, 'bold'), text="LIST OF CUSTOMER", fg="#15d3ba", anchor="center")
-        self.label.grid(row=0, column=3, padx=10, pady=10)
+        right = Frame(self.root, bg=content_bg)
+        right.pack(side="right", fill="both", expand=True, padx=20, pady=20)
 
-        # display message
-        self.name_label = Label(left, font=('arial', 20, 'bold'), text="NAME", fg="#15d3ba", anchor="center")
-        self.name_label.grid(row=0, column=1, padx=10, pady=10)
+        bottom = Frame(self.root, bg=header_bg)
+        bottom.pack(side="bottom", fill="x")
 
-        # text enter field
-        self.name_customer_entry = Text(left, height=30, width=70)
-        self.name_customer_entry.grid(row=1, column=1, padx=10, pady=10)
+        # Header Label
+        self.label = Label(top, font=('Times', 40, 'bold'), text="CUSTOMER INFORMATION", fg="#ffe9a1", bg=header_bg)
+        self.label.pack(pady=20)
 
-        # display message
-        self.room_no_label = Label(right, font=('arial', 20, 'bold'), text="ROOM NO", fg="#15d3ba", anchor="center")
-        self.room_no_label.grid(row=0, column=1, padx=10, pady=10)
+        # Name Entry
+        self.name_label = Label(left, font=('Times', 20, 'bold'), text="Name", fg="#ffe9a1", bg=old_money_bg, width=15)
+        self.name_label.grid(row=0, column=0, padx=10, pady=10)
 
-        # text enter field
-        self.room_no_customer_entry = Text(right, height=30, width=70)
-        self.room_no_customer_entry.grid(row=1, column=1, padx=10, pady=10)
+        self.name_customer_entry = Text(left, height=20, width=40, font=('Times', 16), bg="#FFFFFF", fg="#000000")
+        self.name_customer_entry.grid(row=1, column=0, padx=10, pady=10)
 
-        # create home button
-        self.home_button = Button(top, text="HOME", font=('', 15), bg="#15d3ba", relief=RIDGE, height=2, width=15,
-                                  fg="black", anchor="center", command=main.home_ui)
-        self.home_button.grid(row=8, column=3, padx=10, pady=10)
+        # Room No Entry
+        self.room_no_label = Label(right, font=('Times', 20, 'bold'), text="Room Number", fg="#ffe9a1", bg=old_money_bg, width=15)
+        self.room_no_label.grid(row=0, column=0, padx=10, pady=10)
 
-        def display_info():
+        self.room_no_customer_entry = Text(right, height=20, width=40, font=('Times', 16), bg="#FFFFFF", fg="#000000")
+        self.room_no_customer_entry.grid(row=1, column=0, padx=10, pady=10)
 
-            conn = sqlite3.connect('Hotel.db')
-            with conn:
-                cursor = conn.cursor()
-            cursor.execute(
-                'CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT,Address TEXT,mobile_number TEXT,number_days TEXT,'
-                'room_number NUMBER)')
+        # Home Button
+        self.home_button = Button(bottom, text="Back", font=('Times', 20, 'bold'), bg=button_bg, fg=button_fg, relief=RIDGE, height=2, width=15, command=self.go_back)
+        self.home_button.pack(side="left", padx=(20, 10), pady=20)
+
+        # Display Button
+        self.display_button = Button(bottom, text="Display", font=('Times', 20, 'bold'), bg=button_bg, fg=button_fg, relief=RIDGE, height=2, width=15, command=self.display_info)
+        self.display_button.pack(side="left", padx=(10, 20), pady=20)
+
+        # Check if Name and Room No are filled
+        self.name_customer_entry.bind('<KeyRelease>', self.check_fields)
+        self.room_no_customer_entry.bind('<KeyRelease>', self.check_fields)
+
+    def check_fields(self, event=None):
+        name_text = self.name_customer_entry.get("1.0", 'end-1c')
+        room_text = self.room_no_customer_entry.get("1.0", 'end-1c')
+        if name_text.strip() and room_text.strip():
+            self.display_button.config(state=NORMAL)
+        else:
+            self.display_button.config(state=DISABLED)
+
+    def display_info(self):
+        conn = sqlite3.connect('Hotel.db')
+        with conn:
+            cursor = conn.cursor()
+            cursor.execute('CREATE TABLE IF NOT EXISTS Hotel (Fullname TEXT, Address TEXT, mobile_number TEXT, number_days TEXT, room_number INTEGER)')
             conn.commit()
-            with conn:
-                cursor.execute("SELECT Fullname FROM Hotel")
-                ans = cursor.fetchall()
-                for i in ans:
-                    self.name_customer_entry.insert(INSERT, i[0] + '\n')
 
-            with conn:
-                cursor.execute("SELECT room_number FROM Hotel")
-                ans = cursor.fetchall()
-                for i in ans:
-                    self.room_no_customer_entry.insert(INSERT, str(i[0]) + '\n')
-        # create display button
-        self.display_button = Button(top, text="DISPLAY", font=('', 15), bg="#15d3ba", relief=RIDGE, height=2, width=15,
-                                     fg="black", anchor="center", command=display_info)
-        self.display_button.grid(row=8, column=4, padx=10, pady=10)
+            cursor.execute("SELECT Fullname FROM Hotel")
+            names = cursor.fetchall()
+            self.name_customer_entry.delete(1.0, tk.END)
+            for name in names:
+                self.name_customer_entry.insert(tk.INSERT, name[0] + '\n')
+
+            cursor.execute("SELECT room_number FROM Hotel")
+            rooms = cursor.fetchall()
+            self.room_no_customer_entry.delete(1.0, tk.END)
+            for room in rooms:
+                self.room_no_customer_entry.insert(tk.INSERT, str(room[0]) + '\n')
+
+    def go_back(self):
+        self.root.destroy()
+        main.home_ui() 
+
+def customer_info_ui():
+    root = tk.Tk()
+    application = CustomerInfo(root)
+   
 
 
 def customer_info_ui():
