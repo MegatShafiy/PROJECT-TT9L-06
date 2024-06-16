@@ -23,3 +23,15 @@ class RoomType:
 
         self.label = Label(top, font=('Times New Roman', 50, 'bold'), text="ROOM TYPE", fg="#725700", anchor="center", bg="#c9c1a7")
         self.label.pack(pady=10)
+
+        # Room type information with image paths
+        self.room_types = [
+            ("Single Room", "Room assigned to one person. May have one or two beds.", "singleroom.jpg"),
+            ("Double Room", "Room assigned to two people. May have one or more beds.", "doubleroom.jpg"),
+            ("Suite", "A set of rooms designated for a particular purpose such as a bedroom, living room, and kitchen.", "suiteroom.jpg"),
+            ("Family Room", "A room with several beds, often designed for family accommodation.", "familyroom.jpg")
+        ]
+
+        self.image_refs = []  # Keep a reference to the images to prevent garbage collection
+
+        self.create_room_type_selection(left)
