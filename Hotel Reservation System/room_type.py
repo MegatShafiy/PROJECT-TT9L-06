@@ -1,6 +1,7 @@
 import sqlite3
 from tkinter import *
 from PIL import Image, ImageTk  # Import Pillow for image handling
+import main
 
 class RoomType:
 
@@ -21,6 +22,9 @@ class RoomType:
         right = Frame(self.root, bg="#c9c1a7")
         right.pack(side="right", fill="both", expand=True)
 
+        bottom = Frame(self.root, bg="#c9c1a7")
+        bottom.pack(side="bottom", fill="x")
+
         self.label = Label(top, font=('Times New Roman', 50, 'bold'), text="ROOM TYPE", fg="#725700", anchor="center", bg="#c9c1a7")
         self.label.pack(pady=10)
 
@@ -35,6 +39,9 @@ class RoomType:
         self.image_refs = []  # Keep a reference to the images to prevent garbage collection
 
         self.create_room_type_selection(left)
+
+        self.back_button = Button(bottom, text="BACK", font=('Times New Roman', 20, 'bold'), bg="#725700", relief=RAISED, height=2, width=20, fg="#ffe9a1", anchor="center", command=self.go_back)
+        self.back_button.pack(pady=10)
 
     def create_room_type_selection(self, parent):
         for idx, (room_type, description, image_path) in enumerate(self.room_types):
@@ -60,6 +67,10 @@ class RoomType:
                 image_label.pack(side="right", padx=10)
             except Exception as e:
                 print(f"Error loading image {image_path}: {e}")
+
+    def go_back(self):
+        self.root.destroy()
+        main.home_ui()
 
 def room_type_ui():
     root = Tk()
