@@ -35,3 +35,36 @@ class RoomType:
         self.image_refs = []  # Keep a reference to the images to prevent garbage collection
 
         self.create_room_type_selection(left)
+
+    def create_room_type_selection(self, parent):
+        for idx, (room_type, description, image_path) in enumerate(self.room_types):
+            frame = Frame(parent, bg="#c9c1a7", relief="solid", bd=2)
+            frame.pack(fill="x", padx=10, pady=5)
+
+            try:
+                # Load and resize the image
+                image = Image.open(image_path)
+                image = image.resize((100, 100), Image.ANTIALIAS)
+                photo = ImageTk.PhotoImage(image)
+
+                # Add the image reference to the list to prevent garbage collection
+                self.image_refs.append(photo)
+                
+                # Display the room type name and description
+                label_desc = Label(frame, font=('Times New Roman', 16), text=f"{room_type}: {description}", fg="#725700", anchor="w", bg="#c9c1a7", padx=10, pady=5)
+                label_desc.pack(side="left")
+
+                # Add the image to the frame
+                image_label = Label(frame, image=photo, bg="#c9c1a7")
+                image_label.image = photo  # Keep a reference to avoid garbage collection
+                image_label.pack(side="right", padx=10)
+            except Exception as e:
+                print(f"Error loading image {image_path}: {e}")
+
+def room_type_ui():
+    root = Tk()
+    app = RoomType(root)
+    root.mainloop()
+
+# Run the application
+room_type_ui()
